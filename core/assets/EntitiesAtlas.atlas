@@ -1,0 +1,237 @@
+
+EntitiesAtlas.png
+size: 1024, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Entities/Furniture/Torch
+  rotate: false
+  xy: 721, 197
+  size: 8, 16
+  orig: 8, 16
+  offset: 0, 0
+  index: 0
+Entities/Furniture/WoodenDoor
+  rotate: false
+  xy: 703, 191
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+Entities/Human/Idle
+  rotate: false
+  xy: 685, 209
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+Entities/Human/Walk
+  rotate: false
+  xy: 35, 37
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Entities/Nature/Cloud
+  rotate: false
+  xy: 1, 45
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: 0
+Entities/Nature/Cloud
+  rotate: false
+  xy: 685, 235
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: 1
+Entities/Nature/Cloud
+  rotate: false
+  xy: 1, 19
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: 2
+Entities/OverWorld/Viking
+  rotate: false
+  xy: 87, 53
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+Entities/OverWorld/Viking
+  rotate: false
+  xy: 685, 173
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+GUI/GUI
+  rotate: false
+  xy: 363, 71
+  size: 320, 180
+  orig: 320, 180
+  offset: 0, 0
+  index: -1
+GUI/NAOSoftLogo
+  rotate: false
+  xy: 1, 71
+  size: 360, 180
+  orig: 360, 180
+  offset: 0, 0
+  index: -1
+Tiles/Level/Tile
+  rotate: false
+  xy: 53, 27
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 0
+Tiles/Level/Tile
+  rotate: false
+  xy: 69, 43
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 1
+Tiles/Level/Tile
+  rotate: false
+  xy: 721, 225
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 2
+Tiles/Level/Tile
+  rotate: false
+  xy: 755, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 3
+Tiles/Level/Tile
+  rotate: false
+  xy: 37, 9
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 4
+Tiles/Level/Tile
+  rotate: false
+  xy: 105, 61
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 5
+Tiles/Level/Tile
+  rotate: false
+  xy: 685, 163
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 6
+Tiles/Level/Tile
+  rotate: false
+  xy: 703, 181
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 7
+Tiles/Level/Tile
+  rotate: false
+  xy: 79, 43
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 8
+Tiles/Level/Tile
+  rotate: false
+  xy: 721, 215
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 9
+Tiles/Level/Tile
+  rotate: false
+  xy: 731, 225
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 10
+Tiles/Level/Tile
+  rotate: false
+  xy: 765, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 11
+Tiles/Level/Tile
+  rotate: false
+  xy: 115, 61
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 12
+Tiles/Level/Tile
+  rotate: false
+  xy: 685, 153
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 13
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 719, 235
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 1, 1
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 35, 19
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 69, 53
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 685, 191
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 703, 217
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 737, 235
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 19, 1
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7

@@ -1,0 +1,78 @@
+/*-----------------------------------*/
+/*---TOA PROJECT SOURCE VER0.0.10a---*/
+/*-----------------------------------*/
+
+TO-DO IN TE PROJECT!!
+
+TO-DO PHYSICS:
+-collision area generation
+-entity collision area assignation
+-Tiles collision types (full, top, down, left, right, 4 slopes)
+-Tilemap AABB generation
+-broad phase collision calculation for tilemap
+-correct friction calculation
+-oppose force and bouncing
+-point to slopes
+-ray to slopes
+-static to slope
+-dynamic to slope and solving
+-Dynamic to dynamic bodies collision detection and solving
+
+
+TO-DO CODING:
+-Entity polimorfism networking ready(copy from TOA godot ver. codebase)
+-Make simple NPC’s
+-Finish stats system
+-Inventory system(copy from TOA godot ver. codebase)
+-Modifier system
+-Per overworld tile entering and generation
+-Better overworld generation
+-Marching squares for tiles
+-Second layer system for levels(for buildings and backgrounds)
+-universal UI menu system
+-Localization system
+
+
+TO-DO SERVER CODING:
+-Import and fix old Java networking code(simple beta test)
+-Import, merge and fix TOA godot ver. networking to enhance the networking
+-Entity spawn system for networking
+-Networked combat
+-Server snapshot system
+-Serialization, encryption and compression of networking data
+-Entity interpolation(half done on godot’s codebase)
+-Entity extrapolation(half done on godot’s codebase)
+-Client side prediction
+-Lag compensation
+-Per level and world layer separation(for less bandwidth usage)
+-Smart snapshot creation
+-Snapshot optimization per action
+-Snapshot optimization per client
+
+
+WISH-LIST:
+-Mana magic system
+-Player skin system
+-Chat system
+-First mini boss
+-Saving system
+-Make better menus
+-Control customization
+-2 players splitscreen
+-System adjustments menu
+-Commands system(cheats and debugging)
+-Local server permanent leaderboard
+-Quick emote system(9 player emotes)
+-Player to player trading system
+-Level per player system(each player be capable of stay on its own level in multiplayer servers)
+-NPC trading system
+-Faction system
+-Debugging tools and panel(for server host)
+-Dedicated server program(Java copy without graphics or player)
+-Dungeon and towns generation system
+-Game’s 8px and 16px custom fonts
+-Parallax effect
+-Double layered parallax(combined parallaxes of the current scene + the tile at the north in overworld space=
+
+
+Copyright Nokki and FenixSoft
