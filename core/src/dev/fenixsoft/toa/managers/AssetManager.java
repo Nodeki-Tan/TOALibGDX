@@ -32,6 +32,8 @@ public class AssetManager {
 	public static byte COLOR_ORANGE = pointer++;
 
 	public static void initAssetsCore(){
+		ConstantsManager.init();
+
 		entityAtlas = new TextureAtlas(ASSET_PATH + "EntitiesAtlas.atlas");
 		GUIAtlas = new TextureAtlas(ASSET_PATH + "guiAtlas.atlas");
 		white = new BitmapFont(new FileHandle(ASSET_PATH + "Font/AstoniaWhite.fnt"), false);

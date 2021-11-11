@@ -9,14 +9,18 @@ import dev.fenixsoft.toa.toolbox.Maths;
 public class BoundingBox extends Entity {
 
     public Vector2 velocity = new Vector2(0,0);
+
     public byte COLOR = AssetManager.COLOR_WHITE;
+    public byte COLLISION_MASK = 0;
 
     DebugSquareEntity debugSprite;
 
-    public BoundingBox(Vector2 _position, Vector2 _scale, byte _COLOR, boolean debug){
+    public BoundingBox(Vector2 _position, Vector2 _scale, byte _COLOR, boolean debug, byte _COLLISION_MASK){
         super(_position, _scale, false);
 
         COLOR = _COLOR;
+
+        COLLISION_MASK = _COLLISION_MASK;
 
         debugSprite = new DebugSquareEntity(debug);
         debugSprite.setData(COLOR, position, scale);

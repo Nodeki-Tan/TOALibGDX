@@ -278,32 +278,70 @@ public class PhysicsSolver {
                     float minMov = 0.25f;
                     float friction = 0.9f;
 
-                    if (out.contactNormal.y != 0){
-                        mover.velocity.x += out.contactNormal.x * Math.abs(mover.velocity.x) * (1.0f - out.contactTime);
-                        mover.velocity.x *= friction;
+                    Vector2 comp = new Vector2(0, -1);
 
-                        if (mover.velocity.x <= minMov && mover.velocity.x >= -minMov){
-                            mover.velocity.x = 0;
+                    //System.out.println("comparator " + comp + ", Normal " + out.contactNormal);
+
+                    if(compareNormalsToMask(out, body)) {
+
+                        //System.out.println("making contact comparator " + comp + ", Normal " + out.contactNormal);
+
+                        if (out.contactNormal.y != 0) {
+                            mover.velocity.x += out.contactNormal.x * Math.abs(mover.velocity.x) * (1.0f - out.contactTime);
+                            mover.velocity.x *= friction;
+
+                            if (mover.velocity.x <= minMov && mover.velocity.x >= -minMov) {
+                                mover.velocity.x = 0;
+                            }
+                        } else {
+                            mover.velocity.x += out.contactNormal.x * Math.abs(mover.velocity.x) * (1.0f - out.contactTime);
                         }
-                    }else{
-                        mover.velocity.x += out.contactNormal.x * Math.abs(mover.velocity.x) * (1.0f - out.contactTime);
-                    }
 
-                    if (out.contactNormal.x != 0) {
-                        mover.velocity.y += out.contactNormal.y * Math.abs(mover.velocity.y) * (1.0f - out.contactTime);
-                        mover.velocity.y *= friction;
+                        if (out.contactNormal.x != 0) {
+                            mover.velocity.y += out.contactNormal.y * Math.abs(mover.velocity.y) * (1.0f - out.contactTime);
+                            mover.velocity.y *= friction;
 
-                        if (mover.velocity.y <= minMov && mover.velocity.y >= -minMov){
-                            mover.velocity.y = 0;
+                            if (mover.velocity.y <= minMov && mover.velocity.y >= -minMov) {
+                                mover.velocity.y = 0;
+                            }
+                        } else {
+                            mover.velocity.y += out.contactNormal.y * Math.abs(mover.velocity.y) * (1.0f - out.contactTime);
                         }
-                    }else{
-                        mover.velocity.y += out.contactNormal.y * Math.abs(mover.velocity.y) * (1.0f - out.contactTime);
+
                     }
 
                 }
             }
         }
 
+    }
+
+    static boolean compareNormalsToMask(RayContactResult out, BoundingBox in){
+
+        if(in.COLLISION_MASK == PhysicsConstants.FULL_BLOCK) return true;
+
+        if(PhysicsConstants.COLLISION_MASKS[in.COLLISION_MASK].north){
+            if(out.contactNormal.x == 0 && out.contactNormal.y == 1)
+                return true;
+        }
+
+        if(PhysicsConstants.COLLISION_MASKS[in.COLLISION_MASK].south){
+            if(out.contactNormal.x == 0 && out.contactNormal.y == -1)
+                return true;
+        }
+
+        if(PhysicsConstants.COLLISION_MASKS[in.COLLISION_MASK].east){
+            if(out.contactNormal.x == 1 && out.contactNormal.y == 0)
+                return true;
+        }
+
+        if(PhysicsConstants.COLLISION_MASKS[in.COLLISION_MASK].west){
+            if(out.contactNormal.x == -1 && out.contactNormal.y == 0)
+                return true;
+        }
+
+
+        return false;
     }
 
 }

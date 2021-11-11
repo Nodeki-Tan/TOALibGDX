@@ -10,6 +10,7 @@ import dev.fenixsoft.toa.entities.DebugSquareEntity;
 import dev.fenixsoft.toa.entities.Entity;
 import dev.fenixsoft.toa.managers.AssetManager;
 import dev.fenixsoft.toa.managers.EntityManager;
+import dev.fenixsoft.toa.physics.PhysicsConstants;
 import dev.fenixsoft.toa.physics.PhysicsSolver;
 import dev.fenixsoft.toa.physics.RayContactResult;
 import dev.fenixsoft.toa.physics.BoundingBox;
@@ -34,21 +35,57 @@ public class PhysicsTestState extends State{
     public void init() {
 
         playerEntity = new Entity(new Vector2(10, 10), new Vector2(4, 4));
-        player = new BoundingBox(new Vector2(10,80), new Vector2(10,24), AssetManager.COLOR_RED, true);
+        player = new BoundingBox(
+                new Vector2(10,80),
+                new Vector2(10,24),
+                AssetManager.COLOR_RED,
+                true, PhysicsConstants.FULL_BLOCK);
 
         boundingBoxList.add(player);
 
 
         for (int i = 0; i < 2500; i++) {
             BoundingBox temp = new BoundingBox(
-                    new Vector2(8 * i,0), new Vector2(8,8), AssetManager.COLOR_WHITE, true);
+                    new Vector2(8 * i,0),
+                    new Vector2(8,8),
+                    AssetManager.COLOR_WHITE,
+                    true,  PhysicsConstants.FULL_BLOCK);
             boundingBoxList.add(temp);
         }
 
         for (int i = 0; i < 2500; i++) {
             BoundingBox temp = new BoundingBox(
-                    new Vector2(8 * i,64), new Vector2(8,8), AssetManager.COLOR_WHITE, true);
+                    new Vector2(8 * i,64),
+                    new Vector2(8,8),
+                    AssetManager.COLOR_PURPLE,
+                    true, PhysicsConstants.TOP_BLOCK);
             boundingBoxList.add(temp);
+        }
+
+        for (int x = 0; x < 1; x++) {
+            for (int y = 0; y < 2; y++) {
+
+                BoundingBox temp = new BoundingBox(
+                        new Vector2(32 + (8 * x),72 + (8 * y)),
+                        new Vector2(8,8),
+                        AssetManager.COLOR_BLUE,
+                        true, PhysicsConstants.LEFT_BLOCK);
+                boundingBoxList.add(temp);
+
+            }
+        }
+
+        for (int x = 0; x < 1; x++) {
+            for (int y = 0; y < 2; y++) {
+
+                BoundingBox temp = new BoundingBox(
+                        new Vector2(40 + (8 * x),72 + (8 * y)),
+                        new Vector2(8,8),
+                        AssetManager.COLOR_ORANGE,
+                        true, PhysicsConstants.RIGHT_BLOCK);
+                boundingBoxList.add(temp);
+
+            }
         }
 
 
@@ -83,7 +120,7 @@ public class PhysicsTestState extends State{
                             ),
                             boundingBoxList,
                             out)){
-                if (out.contactTime <= 1.0f) player.velocity.y = jumpPower;
+                player.velocity.y = jumpPower;
             }
         }
 
