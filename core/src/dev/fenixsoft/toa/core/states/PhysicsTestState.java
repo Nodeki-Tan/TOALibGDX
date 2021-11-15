@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import dev.fenixsoft.toa.core.GameCore;
 import dev.fenixsoft.toa.core.MainCore;
+import dev.fenixsoft.toa.core.MapCore;
 import dev.fenixsoft.toa.entities.DebugSquareEntity;
 import dev.fenixsoft.toa.entities.Entity;
 import dev.fenixsoft.toa.managers.AssetManager;
@@ -27,6 +28,9 @@ public class PhysicsTestState extends State{
     BoundingBox player;
     Entity playerEntity;
 
+    int frame = 1;
+    Vector2 dir = new Vector2(1,0);
+
     List<BoundingBox> boundingBoxList = new ArrayList<BoundingBox>();
 
     public PhysicsTestState() {
@@ -34,7 +38,7 @@ public class PhysicsTestState extends State{
 
     public void init() {
 
-        playerEntity = new Entity(new Vector2(10, 10), new Vector2(4, 4));
+        playerEntity = new Entity(new Vector2(10, 10), new Vector2(48.0f / MapCore.LEVEL_TILE_SIZE, 26.0f / MapCore.LEVEL_TILE_SIZE));
         player = new BoundingBox(
                 new Vector2(10,80),
                 new Vector2(10,24),
@@ -79,7 +83,7 @@ public class PhysicsTestState extends State{
             for (int y = 0; y < 2; y++) {
 
                 BoundingBox temp = new BoundingBox(
-                        new Vector2(40 + (8 * x),72 + (8 * y)),
+                        new Vector2(56 + (8 * x),72 + (8 * y)),
                         new Vector2(8,8),
                         AssetManager.COLOR_ORANGE,
                         true, PhysicsConstants.RIGHT_BLOCK);
@@ -102,25 +106,42 @@ public class PhysicsTestState extends State{
 
         player.velocity.y -= gravity * delta;
 
+        if (dir.x == -2)
+            dir.x = -1;
+        else if (dir.x == 2)
+            dir.x = 1;
+
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             player.velocity.x += speed;
+
+            dir.x = 2;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             player.velocity.x -= speed;
+
+            dir.x = -2;
         }
 
         RayContactResult out = new RayContactResult();
 
+        Vector2 rayPos = new Vector2(
+                player.getPosition().x + (player.getScale().x / 2.0f),
+                player.getPosition().y - 4);
+
+        //System.out.println("player is at " + player.getPosition() + " and its raycasting to " + rayPos);
+
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             if(PhysicsSolver.rayVsRect
-                    (player.getPosition(),
-                            Maths.sub(
-                                    new Vector2(player.getPosition().x, player.getPosition().y + 4),
-                                    player.getPosition()
-                            ),
+                            (player.getPosition(),
+                                    rayPos,
                             boundingBoxList,
                             out)){
-                player.velocity.y = jumpPower;
+                System.out.println("contact!");
+                if (out.contactTime >= 0.0f && out.contactTime < 1.0f) {
+
+
+                    player.velocity.y = jumpPower;
+                }
             }
         }
 
@@ -140,21 +161,62 @@ public class PhysicsTestState extends State{
 
         PhysicsSolver.solveIteractionsInArea(player, boundingBoxList, delta);
 
-        if (elapsedTime >= 1) {
-            elapsedTime = 0;
-            currentMemory = (int) ((Gdx.app.getJavaHeap() / 1024) / 1024);
-        }
 
-        elapsedTime += Gdx.graphics.getDeltaTime();
 
     }
 
     public void renderTick(float delta) {
         playerEntity.setPosition(player.getPosition());
+
+        if (elapsedTime >= 0.2f) {
+            elapsedTime = 0;
+
+
+            if(dir.x == -2 || dir.x == 2) {
+                frame++;
+                if (frame >= 6) frame = 0;
+            }else{
+                frame = 1;
+            }
+
+            currentMemory = (int) ((Gdx.app.getJavaHeap() / 1024) / 1024);
+        }
+
+        elapsedTime += Gdx.graphics.getDeltaTime();
+
+        MainCore.camera.setPosition(player.getPosition().x, player.getPosition().y + (360 / 4));
     }
 
     public void render(float delta)  {
-        playerEntity.render("Entities/Human/Walk", 0, 12, 0);
+
+        MainCore.worldBatch.draw(AssetManager.entityAtlas.findRegions("Parallax/Capa").get(2),
+                MainCore.camera.getPosition().x - ((1280 / 2) / 2),
+                MainCore.camera.getPosition().y - (360 / 4),
+                1280,
+                360);
+
+        MainCore.worldBatch.draw(AssetManager.entityAtlas.findRegions("Parallax/Capa").get(1),
+                MainCore.camera.getPosition().x - ((1280 / 2) / 2),
+                MainCore.camera.getPosition().y - (360 / 4),
+                1280,
+                360);
+
+        MainCore.worldBatch.draw(AssetManager.entityAtlas.findRegions("Parallax/Capa").get(0),
+                MainCore.camera.getPosition().x - ((1280 / 2) / 2),
+                MainCore.camera.getPosition().y - (360 / 4),
+                1280,
+                360);
+
+        if(dir.x == -2|| dir.x == 2)
+            if (dir.x == -2)
+                playerEntity.render("Entities/Human/Player/run/Run", frame, 18, 1, true);
+            else
+                playerEntity.render("Entities/Human/Player/run/Run", frame, 18, 1);
+        else if(dir.x == -1|| dir.x == 1)
+            if (dir.x == -1)
+                playerEntity.render("Entities/Human/Player/run/Run", 0, 18, 1, true);
+            else
+                playerEntity.render("Entities/Human/Player/run/Run", 0, 18, 1);
     }
 
     public void renderUI(float delta)  {

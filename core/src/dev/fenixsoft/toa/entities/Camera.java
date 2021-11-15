@@ -13,13 +13,13 @@ public class Camera {
 	private float yaw;
 	private float roll;
 	
-	private float cameraSpeed = 4f * MapCore.LEVEL_TILE_SIZE;
+	private float cameraSpeed = 16f * MapCore.LEVEL_TILE_SIZE;
 
 	public Camera(){}
 	
 	public void tick() {
 
-		move();
+		//move();
 
 	}
 	

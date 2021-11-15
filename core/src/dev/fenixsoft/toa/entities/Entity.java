@@ -1,6 +1,8 @@
 package dev.fenixsoft.toa.entities;
 
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import dev.fenixsoft.toa.core.MainCore;
 import dev.fenixsoft.toa.core.MapCore;
@@ -66,6 +68,23 @@ public class Entity {
 				position.y - offsetY,
 				scale.x * MapCore.LEVEL_TILE_SIZE,
 				scale.y * MapCore.LEVEL_TILE_SIZE);
+
+	}
+
+	public void render(String spriteName, int frame, float offsetX, float offsetY, boolean flipX) {
+
+		TextureRegion region = AssetManager.entityAtlas.findRegions(spriteName).get(frame);
+		Texture temp = region.getTexture();
+
+		MainCore.worldBatch.draw(temp,
+				position.x - offsetX,
+				position.y - offsetY,
+				scale.x * MapCore.LEVEL_TILE_SIZE,
+				scale.y * MapCore.LEVEL_TILE_SIZE,
+				region.getRegionX(), region.getRegionY(),
+				region.getRegionWidth(),
+				region.getRegionHeight(),
+				flipX, false);
 
 	}
 

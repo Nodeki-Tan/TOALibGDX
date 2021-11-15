@@ -24,6 +24,7 @@ public class GameCore implements Runnable{
 	public static State menuState;
 	public static State gameState;
 	public static State physicsDebugState;
+	public static State guiTestState;
 	
 	private void init() {
 
@@ -31,6 +32,7 @@ public class GameCore implements Runnable{
 		menuState = new MenuState();
 		gameState = new GameState();
 		physicsDebugState = new PhysicsTestState();
+		guiTestState = new GuiTestState();
 		StateManager.setCurrentState(splashState);
 		
 	}

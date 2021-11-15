@@ -99,7 +99,7 @@ public class MainCore extends Game {
 	}
 
 	void renderGame(){
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(184 / 255.0f, 204 / 255.0f, 216 / 255.0f, 255 / 255.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		//calculate renderTick(sprite position, camera mov etc, to prepare for rendering)

@@ -144,79 +144,8 @@ public class PhysicsSolver {
 
         for (BoundingBox target: bodies) {
 
-            Vector2 contactPoint = new Vector2(0, 0);
-            Vector2 contactNormal = new Vector2(0, 0);
+            if(rayVsRect(rayOrig, rayDir, target, out)) return true;
 
-            Vector2 t_near = new Vector2(0, 0);
-            Vector2 t_far = new Vector2(0, 0);
-
-            Vector2 invdir = new Vector2(0, 0);
-
-            invdir = Maths.divInverse(rayDir, 1.0f);
-
-            t_near.set(Maths.mul(Maths.sub(target.getPosition(), rayOrig), invdir));
-            t_far.set(Maths.mul(Maths.add(target.getPosition(), Maths.sub(target.getScale(), rayOrig)), invdir));
-
-
-            if (Float.isNaN(t_far.y) || Float.isNaN(t_far.x)) continue;
-            if (Float.isNaN(t_near.y) || Float.isNaN(t_near.x)) continue;
-
-
-            if (t_near.x > t_far.x) {
-                float tempA = 0;
-                float tempB = 0;
-
-                tempA = t_near.x;
-                tempB = t_far.x;
-
-                t_near.x = tempB;
-                t_far.x = tempA;
-            }
-
-            if (t_near.y > t_far.y) {
-                float tempA = 0;
-                float tempB = 0;
-
-                tempA = t_near.y;
-                tempB = t_far.y;
-
-                t_near.y = tempB;
-                t_far.y = tempA;
-            }
-
-
-            if (t_near.x > t_far.y || t_near.y > t_far.x) continue;
-
-            float t_hit_near = Math.max(t_near.x, t_near.y);
-            float t_hit_far = Math.min(t_far.x, t_far.y);
-
-            if (t_hit_far < 0) continue;
-
-            contactPoint.set(Maths.add(rayOrig, Maths.mul(rayDir, t_hit_near)));
-
-            if (t_near.x > t_near.y) {
-
-                if (invdir.x < 0)
-                    contactNormal.set(1, 0);
-                else
-                    contactNormal.set(-1, 0);
-
-            } else if (t_near.x < t_near.y) {
-
-                if (invdir.y < 0)
-                    contactNormal.set(0, 1);
-                else
-                    contactNormal.set(0, -1);
-
-            } else {
-                contactNormal.set(0, 0);
-            }
-
-            out.contactPoint.set(contactPoint);
-            out.contactNormal.set(contactNormal);
-            out.contactTime = t_hit_near;
-
-            return true;
         }
 
         return false;

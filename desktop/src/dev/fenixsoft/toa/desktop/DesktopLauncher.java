@@ -24,7 +24,9 @@ public class DesktopLauncher {
 		settings.paddingX = 2;
 		settings.paddingY = 2;
 		settings.duplicatePadding = true;
-		//TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawEntities", AssetManager.ASSET_PATH + "./", "EntitiesAtlas");
+		settings.maxHeight = 2048;
+		settings.maxWidth = 2048;
+		TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawEntities", AssetManager.ASSET_PATH + "./", "EntitiesAtlas");
 
 		//Pack GUI textures
 		//TODO: Remove this before releasing the game!!!
