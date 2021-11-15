@@ -140,11 +140,15 @@ public class PhysicsSolver {
 
     }
 
-    public static boolean rayVsRect(Vector2 rayOrig, Vector2 rayDir, List<BoundingBox> bodies, RayContactResult out){
+    public static boolean rayVsRect(Vector2 rayOrig, Vector2 rayDir, BoundingBox self, List<BoundingBox> bodies, RayContactResult out){
 
         for (BoundingBox target: bodies) {
 
-            if(rayVsRect(rayOrig, rayDir, target, out)) return true;
+            if(target != self
+            && rayVsRect(rayOrig, rayDir, target, out)
+            && out.contactTime >= 0.0f
+            && out.contactTime <= 1.0f)
+                return true;
 
         }
 
@@ -182,7 +186,7 @@ public class PhysicsSolver {
         List<ResultPair> list = new ArrayList<ResultPair>();
         List<BoundingBox> bodies = simpleFirstSearch(mover, rawData, deltaTime);
 
-       // System.out.println("Clean " + bodies.size() + " Raw " + rawData.size());
+        //System.out.println("Clean " + bodies.size() + " Raw " + rawData.size());
 
         for (int i = 0; i < bodies.size(); i++) {
 

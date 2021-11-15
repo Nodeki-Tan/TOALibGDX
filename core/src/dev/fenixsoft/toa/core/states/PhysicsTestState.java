@@ -12,6 +12,7 @@ import dev.fenixsoft.toa.physics.PhysicsConstants;
 import dev.fenixsoft.toa.physics.PhysicsSolver;
 import dev.fenixsoft.toa.physics.RayContactResult;
 import dev.fenixsoft.toa.physics.BoundingBox;
+import dev.fenixsoft.toa.toolbox.Maths;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,24 +121,23 @@ public class PhysicsTestState extends State{
 
         RayContactResult out = new RayContactResult();
 
-        Vector2 rayPos = new Vector2(
-                player.getPosition().x + (player.getScale().x / 2.0f),
-                player.getPosition().y - 4);
 
-        //System.out.println("player is at " + player.getPosition() + " and its raycasting to " + rayPos);
+
+        Vector2 rayOrig = new Vector2(
+                player.getPosition().x + (player.getScale().x / 2),
+                player.getPosition().y + 1);
+
+        Vector2 rayDir = new Vector2(
+                player.getPosition().x + (player.getScale().x / 2),
+                player.getPosition().y - 4);
 
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             if(PhysicsSolver.rayVsRect
-                            (player.getPosition(),
-                                    rayPos,
-                            boundingBoxList,
-                            out)){
-                System.out.println("contact!");
-                if (out.contactTime >= 0.0f && out.contactTime < 1.0f) {
+                            (rayOrig, Maths.sub(rayDir, rayOrig),
+                            player, boundingBoxList, out)){
+                System.out.println("contact! at " + out.contactTime);
+                player.velocity.y = jumpPower;
 
-
-                    player.velocity.y = jumpPower;
-                }
             }
         }
 
