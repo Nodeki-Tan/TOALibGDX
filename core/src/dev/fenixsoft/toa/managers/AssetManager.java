@@ -4,17 +4,14 @@ package dev.fenixsoft.toa.managers;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import dev.fenixsoft.toa.core.MainCore;
-import dev.fenixsoft.toa.core.MapCore;
 
 public class AssetManager {
 
 	public static TextureAtlas entityAtlas;
 	public static TextureAtlas GUIAtlas;
-	public static BitmapFont white, black;
+	public static BitmapFont fontWhite, black;
 	public static Skin menuSkin;
 
 	public static String ASSET_PATH = "core/assets/";
@@ -36,7 +33,7 @@ public class AssetManager {
 
 		entityAtlas = new TextureAtlas(ASSET_PATH + "EntitiesAtlas.atlas");
 		GUIAtlas = new TextureAtlas(ASSET_PATH + "guiAtlas.atlas");
-		white = new BitmapFont(new FileHandle(ASSET_PATH + "Font/AstoniaWhite.fnt"), false);
+		fontWhite = new BitmapFont(new FileHandle(ASSET_PATH + "Font/AstoniaWhite.fnt"), false);
 		black = new BitmapFont(new FileHandle(ASSET_PATH + "Font/AstoniaBlack.fnt"), false);
 
 		menuSkin = new Skin(GUIAtlas);
@@ -60,7 +57,7 @@ public class AssetManager {
 		entityAtlas.dispose();
 		GUIAtlas.dispose();
 		menuSkin.dispose();
-		white.dispose();
+		fontWhite.dispose();
 		black.dispose();
 
 		TileManager.cleanUp();

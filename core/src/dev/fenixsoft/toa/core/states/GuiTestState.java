@@ -27,10 +27,10 @@ public class GuiTestState extends State{
     public void renderUI(float delta) {
 
         //DEBUG DRAWS!!!
-        AssetManager.white.draw(MainCore.screenBatch, "line 1", 8,32);
-        AssetManager.white.draw(MainCore.screenBatch, "line 2", 8,64);
-        AssetManager.white.draw(MainCore.screenBatch, "line 3", 8,96);
-        AssetManager.white.draw(MainCore.screenBatch, "line 4", 8,96 + 32);
+        AssetManager.fontWhite.draw(MainCore.screenBatch, "line 1", 8,32);
+        AssetManager.fontWhite.draw(MainCore.screenBatch, "line 2", 8,64);
+        AssetManager.fontWhite.draw(MainCore.screenBatch, "line 3", 8,96);
+        AssetManager.fontWhite.draw(MainCore.screenBatch, "line 4", 8,96 + 32);
 
     }
 

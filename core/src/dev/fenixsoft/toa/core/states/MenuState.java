@@ -32,7 +32,7 @@ public class MenuState extends State {
 		textButtonStyle.down = AssetManager.menuSkin.getDrawable("GUI/Button_Down");
 		textButtonStyle.pressedOffsetX = 1;
 		textButtonStyle.pressedOffsetY = -1;
-		textButtonStyle.font = AssetManager.white;
+		textButtonStyle.font = AssetManager.fontWhite;
 
 		exitButton = new TextButton("Exit", textButtonStyle);
 		startButton = new TextButton("Game test", textButtonStyle);
@@ -90,7 +90,7 @@ public class MenuState extends State {
 		guiTestButton.setWidth(256);
 		exitButton.setWidth(256);
 
-		Label.LabelStyle labelStyle = new Label.LabelStyle(AssetManager.white, Color.WHITE);
+		Label.LabelStyle labelStyle = new Label.LabelStyle(AssetManager.fontWhite, Color.WHITE);
 
 		label = new Label(MainCore.TITLE, labelStyle);
 		label.setFontScale(4);
