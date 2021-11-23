@@ -205,14 +205,14 @@ public class PhysicsTestState extends State{
 
         if(dir.x == -2|| dir.x == 2)
             if (dir.x == -2)
-                playerEntity.render("Entities/Human/Player/run/Run", frame, 18, 1, true);
+                playerEntity.render("Entities/Human/Player/Run/Run", frame, 18, 1, true);
             else
-                playerEntity.render("Entities/Human/Player/run/Run", frame, 18, 1);
+                playerEntity.render("Entities/Human/Player/Run/Run", frame, 18, 1);
         else if(dir.x == -1|| dir.x == 1)
             if (dir.x == -1)
-                playerEntity.render("Entities/Human/Player/run/Run", 0, 18, 1, true);
+                playerEntity.render("Entities/Human/Player/Run/Run", 0, 18, 1, true);
             else
-                playerEntity.render("Entities/Human/Player/run/Run", 0, 18, 1);
+                playerEntity.render("Entities/Human/Player/Run/Run", 0, 18, 1);
     }
 
     public void renderUI(float delta)  {

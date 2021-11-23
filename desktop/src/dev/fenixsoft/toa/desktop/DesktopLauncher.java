@@ -30,7 +30,7 @@ public class DesktopLauncher {
 
 		//Pack GUI textures
 		//TODO: Remove this before releasing the game!!!
-		//TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawGUI", AssetManager.ASSET_PATH + "./", "guiAtlas");
+		TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawGUI", AssetManager.ASSET_PATH + "./", "guiAtlas");
 
 		new LwjglApplication(new MainCore(), config);
 	}

@@ -14,7 +14,7 @@ GUI/Button_Down
   index: -1
 GUI/Button_Up
   rotate: false
-  xy: 18, 1
+  xy: 19, 1
   size: 16, 16
   split: 2, 2, 2, 2
   orig: 16, 16

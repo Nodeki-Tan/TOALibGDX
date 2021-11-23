@@ -6,315 +6,322 @@ filter: Nearest, Nearest
 repeat: none
 Entities/Furniture/Torch
   rotate: false
-  xy: 19, 11
+  xy: 103, 67
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
   index: 0
 Entities/Furniture/WoodenDoor
   rotate: false
-  xy: 1645, 1251
+  xy: 1351, 1117
   size: 16, 24
   orig: 16, 24
   offset: 0, 0
   index: 0
 Entities/Human/Idle
   rotate: false
-  xy: 373, 239
+  xy: 1333, 1117
   size: 16, 24
   orig: 16, 24
   offset: 0, 0
   index: 0
-Entities/Human/Player/run/Run
+Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1283, 1141
+  xy: 1283, 1143
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 0
-Entities/Human/Player/run/Run
+Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1283, 1141
+  xy: 1283, 1143
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 3
-Entities/Human/Player/run/Run
+Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1645, 1323
+  xy: 1645, 1325
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 1
-Entities/Human/Player/run/Run
+Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1, 55
+  xy: 1, 57
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 2
-Entities/Human/Player/run/Run
+Entities/Human/Player/Run/Run
   rotate: false
-  xy: 323, 237
+  xy: 323, 239
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 4
-Entities/Human/Player/run/Run
+Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1283, 1113
+  xy: 1283, 1115
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 5
-Entities/Human/Player/stab/Stab
+Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1333, 1141
+  xy: 1333, 1143
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 0
-Entities/Human/Player/stab/Stab
+Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1645, 1295
+  xy: 1645, 1297
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 1
-Entities/Human/Player/stab/Stab
+Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1695, 1323
+  xy: 1695, 1325
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 2
+Entities/Human/Player/Stab/Stab
+  rotate: false
+  xy: 1, 29
+  size: 48, 26
+  orig: 48, 26
+  offset: 0, 0
+  index: 3
 Entities/Human/Walk
   rotate: false
-  xy: 1283, 1079
+  xy: 1283, 1081
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Entities/Nature/Cloud
   rotate: false
-  xy: 1, 29
+  xy: 51, 59
   size: 32, 24
   orig: 32, 24
   offset: 0, 0
   index: 0
 Entities/Nature/Cloud
   rotate: false
-  xy: 51, 65
+  xy: 323, 221
   size: 32, 16
   orig: 32, 16
   offset: 0, 0
   index: 1
 Entities/Nature/Cloud
   rotate: false
-  xy: 323, 211
+  xy: 373, 241
   size: 32, 24
   orig: 32, 24
   offset: 0, 0
   index: 2
 Entities/OverWorld/Viking
   rotate: false
-  xy: 1283, 1061
+  xy: 407, 249
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 0
 Entities/OverWorld/Viking
   rotate: false
-  xy: 391, 247
+  xy: 1283, 1063
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 GUI/GUI
   rotate: false
-  xy: 1, 83
+  xy: 1, 85
   size: 320, 180
   orig: 320, 180
   offset: 0, 0
   index: -1
 GUI/NAOSoftLogo
   rotate: false
-  xy: 1283, 1169
+  xy: 1283, 1171
   size: 360, 180
   orig: 360, 180
   offset: 0, 0
   index: -1
 Parallax/Capa
   rotate: false
-  xy: 1, 989
+  xy: 1, 991
   size: 1280, 360
   orig: 1280, 360
   offset: 0, 0
   index: 0
 Parallax/Capa
   rotate: false
-  xy: 1, 627
+  xy: 1, 629
   size: 1280, 360
   orig: 1280, 360
   offset: 0, 0
   index: 1
 Parallax/Capa
   rotate: false
-  xy: 1, 265
+  xy: 1, 267
   size: 1280, 360
   orig: 1280, 360
   offset: 0, 0
   index: 2
 Tiles/Level/Tile
   rotate: false
-  xy: 35, 45
+  xy: 357, 229
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 0
 Tiles/Level/Tile
   rotate: false
-  xy: 51, 55
+  xy: 1317, 1105
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 1
 Tiles/Level/Tile
   rotate: false
-  xy: 357, 227
+  xy: 1383, 1143
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 2
 Tiles/Level/Tile
   rotate: false
-  xy: 1317, 1103
+  xy: 1401, 1161
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 3
 Tiles/Level/Tile
   rotate: false
-  xy: 1333, 1113
+  xy: 1645, 1269
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 4
 Tiles/Level/Tile
   rotate: false
-  xy: 1351, 1131
+  xy: 1663, 1287
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 5
 Tiles/Level/Tile
   rotate: false
-  xy: 1383, 1141
+  xy: 1695, 1297
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 6
 Tiles/Level/Tile
   rotate: false
-  xy: 1401, 1159
+  xy: 1713, 1315
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 7
 Tiles/Level/Tile
   rotate: false
-  xy: 1663, 1285
+  xy: 1745, 1325
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 8
 Tiles/Level/Tile
   rotate: false
-  xy: 1695, 1295
+  xy: 1763, 1343
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 9
 Tiles/Level/Tile
   rotate: false
-  xy: 1713, 1313
+  xy: 1, 1
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 10
 Tiles/Level/Tile
   rotate: false
-  xy: 1745, 1323
+  xy: 19, 19
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 11
 Tiles/Level/Tile
   rotate: false
-  xy: 1763, 1341
+  xy: 51, 31
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 12
 Tiles/Level/Tile
   rotate: false
-  xy: 1, 1
+  xy: 69, 49
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 13
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1333, 1123
+  xy: 1383, 1153
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 0
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1383, 1151
+  xy: 1645, 1279
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1645, 1277
+  xy: 1695, 1307
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1695, 1305
+  xy: 1745, 1335
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 3
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1745, 1333
+  xy: 1, 11
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 4
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1, 11
+  xy: 51, 41
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 5
 Tiles/Overworld/Tile
   rotate: false
-  xy: 85, 65
+  xy: 85, 67
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 6
 Tiles/Overworld/Tile
   rotate: false
-  xy: 323, 193
+  xy: 323, 203
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
