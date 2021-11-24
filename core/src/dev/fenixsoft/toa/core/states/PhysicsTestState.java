@@ -45,7 +45,7 @@ public class PhysicsTestState extends State{
         boundingBoxList.add(player);
 
 
-        for (int i = 0; i < 2500; i++) {
+        for (int i = 0; i < 1000; i++) {
             BoundingBox temp = new BoundingBox(
                     new Vector2(8 * i,0),
                     new Vector2(8,8),
@@ -54,7 +54,7 @@ public class PhysicsTestState extends State{
             boundingBoxList.add(temp);
         }
 
-        for (int i = 0; i < 2500; i++) {
+        for (int i = 0; i < 1000; i++) {
             BoundingBox temp = new BoundingBox(
                     new Vector2(8 * i,64),
                     new Vector2(8,8),

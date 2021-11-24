@@ -1,6 +1,8 @@
 package dev.fenixsoft.toa.core;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import dev.fenixsoft.toa.managers.LevelManager;
 import dev.fenixsoft.toa.managers.TileManager;
 import dev.fenixsoft.toa.mapData.Chunk;
 import dev.fenixsoft.toa.toolbox.MapGenerator;
@@ -18,8 +20,10 @@ public class MapCore implements Runnable{
     public static int ticks = 0;
 
     public static final int CHUNK_WIDTH = 32;
-
     public static final int LEVEL_TILE_SIZE = 8;
+
+    public static final Vector2 CHUNK_SIZE_UNIT = new Vector2(LEVEL_TILE_SIZE * CHUNK_WIDTH, LEVEL_TILE_SIZE * CHUNK_WIDTH);
+    public static final Vector2 LEVEL_TILE_UNIT = new Vector2(LEVEL_TILE_SIZE, LEVEL_TILE_SIZE);
 
     //SIZE IN ROOMS!!!
     public static int LEVEL_HEIGHT = 64;
@@ -33,8 +37,6 @@ public class MapCore implements Runnable{
     public static final int TILE_RENDERING_BORDER = 2;
 
     private static Chunk[] overworldMapData = new Chunk[OVERWORLD_SIZE * OVERWORLD_SIZE * OVERWORLD_LAYERS];
-
-    private static Chunk[] levelMapData = new Chunk[LEVEL_HEIGHT * LEVEL_WIDTH];
 
     static short selectedTile = 4;
 
@@ -67,18 +69,7 @@ public class MapCore implements Runnable{
     }
 
     public static int generateLevel(int xPos){
-
-        for(int i = 0; i < LEVEL_WIDTH; i++) {
-            for (int j = 0; j < LEVEL_HEIGHT; j++) {
-
-                levelMapData[i + (j * LEVEL_WIDTH)] =  MapGenerator.generateLevelData(i,j);
-
-            }
-        }
-
-        int result = getGroundInLevel(xPos, LEVEL_HEIGHT * CHUNK_WIDTH);
-
-        return result;
+        return LevelManager.generateLevel(xPos, LEVEL_HEIGHT, LEVEL_WIDTH);
     }
 
     @Override
@@ -429,9 +420,9 @@ public class MapCore implements Runnable{
             return;
         }
 
-        if(levelMapData[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)] != null) {
+        if(LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)] != null) {
             //System.out.println("Chunk in [" + (int)xChunk + "," + (int)yChunk + "," + (int)zChunk +"]");
-            levelMapData[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)].
+            LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)].
                     setTile((int) xTile, (int) yTile, value);
         }
 
@@ -461,9 +452,9 @@ public class MapCore implements Runnable{
             return 13;
         }
 
-        if(levelMapData[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)] != null) {
+        if(LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)] != null) {
             //System.out.println("Chunk in [" + (int)xChunk + "," + (int)yChunk + "]");
-            return levelMapData[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)].
+            return LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)].
                     getTile((int)xTile, (int)yTile);
         }
 

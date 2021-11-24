@@ -17,6 +17,7 @@ public class DesktopLauncher {
 
 		//Pack entity textures
 		//TODO: Remove this before releasing the game!!!
+		/*
 		TexturePacker.Settings settings = new TexturePacker.Settings();
 		settings.pot = true;
 		settings.fast = true;
@@ -27,10 +28,11 @@ public class DesktopLauncher {
 		settings.maxHeight = 2048;
 		settings.maxWidth = 2048;
 		TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawEntities", AssetManager.ASSET_PATH + "./", "EntitiesAtlas");
+		*/
 
 		//Pack GUI textures
 		//TODO: Remove this before releasing the game!!!
-		TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawGUI", AssetManager.ASSET_PATH + "./", "guiAtlas");
+		//TexturePacker.process(settings, AssetManager.ASSET_PATH + "rawGUI", AssetManager.ASSET_PATH + "./", "guiAtlas");
 
 		new LwjglApplication(new MainCore(), config);
 	}

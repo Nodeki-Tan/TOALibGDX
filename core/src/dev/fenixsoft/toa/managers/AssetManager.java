@@ -61,6 +61,7 @@ public class AssetManager {
 		black.dispose();
 
 		TileManager.cleanUp();
+		LevelManager.cleanUp();
 	}
 	
 }

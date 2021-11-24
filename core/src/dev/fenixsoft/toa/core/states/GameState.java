@@ -11,6 +11,8 @@ import dev.fenixsoft.toa.entities.LevelRenderer;
 import dev.fenixsoft.toa.entities.OverworldRenderer;
 import dev.fenixsoft.toa.entities.player.LocalPlayer;
 import dev.fenixsoft.toa.managers.AssetManager;
+import dev.fenixsoft.toa.physics.BoundingBox;
+import dev.fenixsoft.toa.physics.PhysicsConstants;
 import dev.fenixsoft.toa.stats.Stats;
 
 public class GameState extends State{
@@ -33,22 +35,32 @@ public class GameState extends State{
 		overWorldRenderer = new OverworldRenderer(Vector2.Zero, null);
 		leverRenderer = new LevelRenderer(Vector2.Zero, null);
 
+		Vector2 levelPos = new Vector2(16 * MapCore.LEVEL_TILE_SIZE, (MapCore.generateLevel(1) * MapCore.LEVEL_TILE_SIZE)+ 20);
+
+		Entity playerEntity = new Entity(levelPos, new Vector2(48.0f / MapCore.LEVEL_TILE_SIZE, 26.0f / MapCore.LEVEL_TILE_SIZE));
+		BoundingBox playerAABB = new BoundingBox(
+				levelPos,
+				new Vector2(10,24),
+				AssetManager.COLOR_RED,
+				true, PhysicsConstants.FULL_BLOCK);
+
 		player = new LocalPlayer(
 				new Vector2(
 						(MapCore.OVERWORLD_SIZE * MapCore.CHUNK_WIDTH * MapCore.OVERWORLD_TILE_SIZE) / 2,
 						(MapCore.OVERWORLD_SIZE * MapCore.CHUNK_WIDTH * MapCore.OVERWORLD_TILE_SIZE) / 2),
-				new Vector2(1 * MapCore.LEVEL_TILE_SIZE, MapCore.generateLevel(1) * MapCore.LEVEL_TILE_SIZE),
+				levelPos,
 				new Stats(8,1,1,1,1,1,1),
 				new Entity(new Vector2(0, 0), new Vector2(2, 2)),
-				new Entity(new Vector2(0, 0), new Vector2(4, 4)),
-				MainCore.camera);
+				playerEntity,
+				MainCore.camera,
+				playerAABB);
 
 		done = true;
 	}
 
 	public void tick(float delta) {
 
-		player.tick();
+		player.tick(delta);
 
 		if (elapsedTime >= 1) {
 			elapsedTime = 0;

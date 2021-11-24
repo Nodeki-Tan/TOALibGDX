@@ -2,26 +2,33 @@ package dev.fenixsoft.toa.entities.player;
 
 import com.badlogic.gdx.math.Vector2;
 import dev.fenixsoft.toa.entities.Entity;
+import dev.fenixsoft.toa.physics.BoundingBox;
 import dev.fenixsoft.toa.stats.Stats;
 
 public class Player{
 
     public boolean inLevel = true;
 
-    private Vector2 overworldPosition;
-    private Vector2 levelPosition;
+    protected Vector2 overworldPosition;
+    protected Vector2 levelPosition;
 
-    private Stats playerStats;
+    protected Stats playerStats;
 
-    private Entity overworldSprite;
-    private Entity levelSprite;
+    protected Entity overworldSprite;
+    protected Entity levelSprite;
 
-    public Player(Vector2 overworldPosition, Vector2 levelPosition, Stats playerStats, Entity overworldSprite, Entity levelSprite) {
+    protected BoundingBox levelAABB;
+    protected Vector2 levelMoveDir = new Vector2(1,0);
+
+    public Player(Vector2 overworldPosition, Vector2 levelPosition, Stats playerStats, Entity overworldSprite, Entity levelSprite, BoundingBox AABB) {
         this.overworldPosition = overworldPosition;
         this.levelPosition = levelPosition;
         this.playerStats = playerStats;
         this.overworldSprite = overworldSprite;
         this.levelSprite = levelSprite;
+        this.levelAABB = AABB;
+
+        levelAABB.setPosition(levelPosition);
     }
 
     public Vector2 getOverworldPosition() {
@@ -64,4 +71,19 @@ public class Player{
         this.levelSprite = levelSprite;
     }
 
+    public BoundingBox getLevelAABB() {
+        return levelAABB;
+    }
+
+    public void setLevelAABB(BoundingBox levelAABB) {
+        this.levelAABB = levelAABB;
+    }
+
+    public Vector2 getLevelMoveDir() {
+        return levelMoveDir;
+    }
+
+    public void setLevelMoveDir(Vector2 levelMoveDir) {
+        this.levelMoveDir = levelMoveDir;
+    }
 }
