@@ -61,12 +61,12 @@ public class LocalPlayer extends Player {
                 levelMoveDir.x = 1;
 
 
-            if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            if(Gdx.input.isKeyPressed(Input.Keys.D)){
                 levelAABB.velocity.x += speed;
 
                 levelMoveDir.x = 2;
             }
-            if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            if(Gdx.input.isKeyPressed(Input.Keys.A)){
                 levelAABB.velocity.x -= speed;
 
                 levelMoveDir.x = -2;
@@ -82,7 +82,7 @@ public class LocalPlayer extends Player {
                     levelAABB.getPosition().x + (levelAABB.getScale().x / 2),
                     levelAABB.getPosition().y - 4);
 
-            if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            if(Gdx.input.isKeyPressed(Input.Keys.W)){
                 if(LevelManager.levelRaycast
                         (rayOrig, Maths.sub(rayDir, rayOrig),
                                 levelAABB, out)){
@@ -127,7 +127,7 @@ public class LocalPlayer extends Player {
 
     public void renderTick(){
 
-        if (elapsedTime >= 0.2f) {
+        if (elapsedTime >= 0.1f) {
             elapsedTime = 0;
 
 
@@ -146,12 +146,13 @@ public class LocalPlayer extends Player {
 
         if (inLevel){
 
-            levelPosition = levelAABB.getPosition();
+            x = levelAABB.getPosition().x;
+            y = levelAABB.getPosition().y;
 
-            x = levelPosition.x;
-            y = levelPosition.y;
+            levelPosition.x = x;
+            levelPosition.y = y;
 
-            levelSprite.setPosition(levelAABB.getPosition());
+            levelSprite.setPosition(levelPosition);
 
         }
         else {

@@ -1,13 +1,12 @@
 package dev.fenixsoft.toa.managers;
 
 import com.badlogic.gdx.math.Vector2;
+import dev.fenixsoft.toa.core.MainCore;
 import dev.fenixsoft.toa.core.MapCore;
 import dev.fenixsoft.toa.mapData.Chunk;
-import dev.fenixsoft.toa.physics.BoundingBox;
-import dev.fenixsoft.toa.physics.PhysicsConstants;
-import dev.fenixsoft.toa.physics.PhysicsSolver;
-import dev.fenixsoft.toa.physics.RayContactResult;
+import dev.fenixsoft.toa.physics.*;
 import dev.fenixsoft.toa.toolbox.MapGenerator;
+import org.lwjgl.Sys;
 
 import java.util.*;
 
@@ -19,11 +18,23 @@ public class LevelManager {
 
     private static Map<Vector2, BoundingBox> levelPhysicsAreas = new HashMap<Vector2, BoundingBox>();
 
+     static int LEVEL_HEIGHT =0;
+    static int LEVEL_WIDTH;
 
+    public static void createLevel(int _LEVEL_HEIGHT, int _LEVEL_WIDTH){
 
-    public static void createLevel(int LEVEL_HEIGHT, int LEVEL_WIDTH){
+        LEVEL_HEIGHT = _LEVEL_HEIGHT;
+        LEVEL_WIDTH = _LEVEL_WIDTH;
 
         levelMapData = new Chunk[LEVEL_HEIGHT * LEVEL_WIDTH];
+
+        for(int i = 0; i < LEVEL_WIDTH; i++) {
+            for (int j = 0; j < LEVEL_HEIGHT; j++) {
+
+                levelMapData[i + (j * LEVEL_WIDTH)] = MapGenerator.generateLevelData(i, j);
+
+            }
+        }
 
     }
 
@@ -40,9 +51,7 @@ public class LevelManager {
                         (i  * (MapCore.CHUNK_WIDTH * MapCore.LEVEL_TILE_SIZE)),
                         (j * (MapCore.CHUNK_WIDTH * MapCore.LEVEL_TILE_SIZE)));
 
-                levelMapData[i + (j * LEVEL_WIDTH)] =  MapGenerator.generateLevelData(i,j);
-
-                BoundingBox AABB = new BoundingBox(
+                BoundingBox AABB = new StaticBoundingBox(
                         globalPos,
                         MapCore.CHUNK_SIZE_UNIT,
                         AssetManager.COLOR_GREEN,
@@ -71,22 +80,44 @@ public class LevelManager {
                         (i * MapCore.LEVEL_TILE_SIZE) + (x * (MapCore.CHUNK_WIDTH * MapCore.LEVEL_TILE_SIZE)),
                         (j * MapCore.LEVEL_TILE_SIZE) + (y * (MapCore.CHUNK_WIDTH * MapCore.LEVEL_TILE_SIZE)));
 
-                actual = data.getTile(i,j);
+                Vector2 tileGlobalPos = new Vector2(globalPos.x / MapCore.LEVEL_TILE_SIZE,globalPos.y / MapCore.LEVEL_TILE_SIZE);
 
-                if (j <= 0 || j >= MapCore.CHUNK_WIDTH - 1){
-                    up      = MapCore.getLevelTile((int)globalPos.x / MapCore.LEVEL_TILE_SIZE, (int)(globalPos.y / MapCore.LEVEL_TILE_SIZE) + 1);
-                    down    = MapCore.getLevelTile((int)globalPos.x / MapCore.LEVEL_TILE_SIZE, (int)(globalPos.y / MapCore.LEVEL_TILE_SIZE) - 1);
+
+                actual = data.getTile(i, j);
+
+                if (j == 0 || j == MapCore.CHUNK_WIDTH - 1){
+                    if (y + 1 <= LEVEL_HEIGHT-1) {
+                        up = levelMapData[x + ((y + 1) * LEVEL_WIDTH)].getTile(i, 0);
+                    }else {
+                        up = 1;
+                    }
+
+                    if (y-1 >= 1){
+                        down    = levelMapData[x +((y -1) * LEVEL_WIDTH)].getTile(i, MapCore.CHUNK_WIDTH -1);
+                    }else {
+                        down = 1;
+                    }
+
                 }else{
-                    up      = data.getTile(i,j+1);
-                    down    = data.getTile(i,j-1);
+                    up      = data.getTile(i, j + 1);
+                    down    = data.getTile(i, j - 1);
                 }
 
-                if (i <= 0 || i >= MapCore.CHUNK_WIDTH - 1){
-                    left    = MapCore.getLevelTile((int)(globalPos.x / MapCore.LEVEL_TILE_SIZE) - 1, (int)globalPos.y / MapCore.LEVEL_TILE_SIZE);
-                    right   = MapCore.getLevelTile((int)(globalPos.x / MapCore.LEVEL_TILE_SIZE) + 1, (int)globalPos.y / MapCore.LEVEL_TILE_SIZE);
+                if (i == 0 || i == MapCore.CHUNK_WIDTH - 1){
+                    if (x-1 >= 1){
+                        left = levelMapData[(x-1) + ((y) * LEVEL_WIDTH)].getTile(0, j);
+                    }else {
+                        left = 1;
+                    }
+
+                    if (x + 1 <= LEVEL_WIDTH-1) {
+                        right    = levelMapData[(x+1) +((y) * LEVEL_WIDTH)].getTile(MapCore.CHUNK_WIDTH-1, j);
+                    }else {
+                        right = 1;
+                    }
                 }else{
-                    left    = data.getTile(i-1,j);
-                    right   = data.getTile(i+1,j);
+                    left    = data.getTile(i - 1, j);
+                    right   = data.getTile(i + 1, j);
                 }
 
 
@@ -97,11 +128,11 @@ public class LevelManager {
                         !TileManager.TILE_LIST.get(left).isSolid()||
                         !TileManager.TILE_LIST.get(right).isSolid()){
 
-                        BoundingBox AABB = new BoundingBox(
+                        BoundingBox AABB = new StaticBoundingBox(
                                 globalPos,
                                 MapCore.LEVEL_TILE_UNIT,
                                 AssetManager.COLOR_WHITE,
-                                true,  PhysicsConstants.FULL_BLOCK);
+                                true, PhysicsConstants.FULL_BLOCK);
 
                         list.add(AABB);
 
@@ -140,6 +171,8 @@ public class LevelManager {
         ArrayList<BoundingBox> AABBs = new ArrayList<>();
 
         RayContactResult localOut = new RayContactResult();
+
+
 
         for (Vector2 pos: levelPhysicsAreas.keySet()) {
             BoundingBox box = levelPhysicsAreas.get(pos);

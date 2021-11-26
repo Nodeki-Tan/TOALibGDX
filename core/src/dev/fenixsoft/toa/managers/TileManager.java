@@ -17,30 +17,27 @@ public class TileManager {
         int index = 0;
 
         for (int i = 0; i < 14; i++) {
-            if(i != 0 && i != 12 && i != 13) {
-                TILE_LIST.add(index, new Tile(
+            if(i == 0 || i == 12 || i == 13) {
+                TILE_LIST.add(i, new Tile(
+                        false,
+                        false,
+                        0,
+                        0,
+                        0,
+                        Vector3.Zero,
+                        AssetManager.entityAtlas.findRegions("Tiles/Level/Tile").get(i)
+                ));
+            }else{
+                TILE_LIST.add(i, new Tile(
                         false,
                         true,
                         0,
                         0,
                         0,
                         Vector3.Zero,
-                        AssetManager.entityAtlas.findRegions("Tiles/Level/Tile").get(index)
-                ));
-            }else{
-                TILE_LIST.add(index, new Tile(
-                        false,
-                        false,
-                        0,
-                        0,
-                        0,
-                        Vector3.Zero,
-                        AssetManager.entityAtlas.findRegions("Tiles/Level/Tile").get(index)
+                        AssetManager.entityAtlas.findRegions("Tiles/Level/Tile").get(i)
                 ));
             }
-
-
-            index++;
         }
 
     }

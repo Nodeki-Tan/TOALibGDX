@@ -35,12 +35,12 @@ public class GameState extends State{
 		overWorldRenderer = new OverworldRenderer(Vector2.Zero, null);
 		leverRenderer = new LevelRenderer(Vector2.Zero, null);
 
-		Vector2 levelPos = new Vector2(16 * MapCore.LEVEL_TILE_SIZE, (MapCore.generateLevel(1) * MapCore.LEVEL_TILE_SIZE)+ 20);
+		Vector2 levelPos = new Vector2(16 , (MapCore.generateLevel(1) * MapCore.LEVEL_TILE_SIZE)+ 20);
 
 		Entity playerEntity = new Entity(levelPos, new Vector2(48.0f / MapCore.LEVEL_TILE_SIZE, 26.0f / MapCore.LEVEL_TILE_SIZE));
 		BoundingBox playerAABB = new BoundingBox(
 				levelPos,
-				new Vector2(10,24),
+				new Vector2(10,(3 * MapCore.LEVEL_TILE_SIZE)-1),
 				AssetManager.COLOR_RED,
 				true, PhysicsConstants.FULL_BLOCK);
 

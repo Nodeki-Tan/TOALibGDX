@@ -28,6 +28,20 @@ public class BoundingBox extends Entity {
         isRenderable = false;
     }
 
+    //Extended constructor
+    public BoundingBox(Vector2 _position, Vector2 _scale, byte _COLOR, boolean debug, byte _COLLISION_MASK, boolean isTemp){
+        super(_position, _scale, isTemp);
+
+        COLOR = _COLOR;
+
+        COLLISION_MASK = _COLLISION_MASK;
+
+        debugSprite = new DebugSquareEntity(debug);
+        debugSprite.setData(COLOR, position, scale);
+
+        isRenderable = false;
+    }
+
     // This one is used for temporal disposable stuff such as calculations
     public BoundingBox(Vector2 _position, Vector2 _scale){
         super(_position, _scale);
