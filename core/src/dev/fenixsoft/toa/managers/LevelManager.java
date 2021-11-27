@@ -86,17 +86,8 @@ public class LevelManager {
                 actual = data.getTile(i, j);
 
                 if (j == 0 || j == MapCore.CHUNK_WIDTH - 1){
-                    if (y + 1 <= LEVEL_HEIGHT-1) {
-                        up = levelMapData[x + ((y + 1) * LEVEL_WIDTH)].getTile(i, 0);
-                    }else {
-                        up = 1;
-                    }
-
-                    if (y-1 >= 1){
-                        down    = levelMapData[x +((y -1) * LEVEL_WIDTH)].getTile(i, MapCore.CHUNK_WIDTH -1);
-                    }else {
-                        down = 1;
-                    }
+                    up      = MapCore.getLevelTile((int)tileGlobalPos.x, (int)tileGlobalPos.y +1);
+                    down    = MapCore.getLevelTile((int)tileGlobalPos.x, (int)tileGlobalPos.y -1);
 
                 }else{
                     up      = data.getTile(i, j + 1);
@@ -104,17 +95,9 @@ public class LevelManager {
                 }
 
                 if (i == 0 || i == MapCore.CHUNK_WIDTH - 1){
-                    if (x-1 >= 1){
-                        left = levelMapData[(x-1) + ((y) * LEVEL_WIDTH)].getTile(0, j);
-                    }else {
-                        left = 1;
-                    }
+                    left    = MapCore.getLevelTile((int)tileGlobalPos.x - 1, (int)tileGlobalPos.y);
+                    right   = MapCore.getLevelTile((int)tileGlobalPos.x + 1, (int)tileGlobalPos.y);
 
-                    if (x + 1 <= LEVEL_WIDTH-1) {
-                        right    = levelMapData[(x+1) +((y) * LEVEL_WIDTH)].getTile(MapCore.CHUNK_WIDTH-1, j);
-                    }else {
-                        right = 1;
-                    }
                 }else{
                     left    = data.getTile(i - 1, j);
                     right   = data.getTile(i + 1, j);

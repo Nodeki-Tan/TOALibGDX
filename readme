@@ -4,12 +4,14 @@
 
 TO-DO IN TE PROJECT!!
 
+TO-DO FINISH:
+-[collision area generation] STARTED, MUST FINISH
+
 TO-DO PHYSICS:
 -Tile slopes (up, down, left right)
 -point to slopes
 -ray to slopes
 -static to slope
--collision area generation
 -entity collision area assignation
 -Tilemap AABB generation
 -broad phase collision calculation for tilemap(almost done basically, uses the simpleFirstSearch of the PhysicsSolver)
