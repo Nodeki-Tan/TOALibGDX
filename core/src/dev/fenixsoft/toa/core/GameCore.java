@@ -15,7 +15,7 @@ public class GameCore implements Runnable{
 	public boolean paused = false;
 	public static boolean running = false;
 
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 
 	public static int ticks = 0;
 

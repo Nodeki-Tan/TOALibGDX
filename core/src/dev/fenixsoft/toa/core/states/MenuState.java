@@ -10,6 +10,7 @@ import dev.fenixsoft.toa.core.GameCore;
 import dev.fenixsoft.toa.core.MainCore;
 import dev.fenixsoft.toa.managers.AssetManager;
 import dev.fenixsoft.toa.managers.StateManager;
+import dev.fenixsoft.toa.toolbox.Timer;
 
 public class MenuState extends State {
 
@@ -54,6 +55,7 @@ public class MenuState extends State {
 			}
 		});
 
+
 		physicsDebugButton.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -93,7 +95,7 @@ public class MenuState extends State {
 		Label.LabelStyle labelStyle = new Label.LabelStyle(AssetManager.fontWhite, Color.WHITE);
 
 		label = new Label(MainCore.TITLE, labelStyle);
-		label.setFontScale(4);
+		label.setFontScale(8);
 
 		table.add(label);
 		table.row();

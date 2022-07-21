@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import dev.fenixsoft.toa.entities.Camera;
 import dev.fenixsoft.toa.entities.DebugSquareEntity;
@@ -29,6 +31,7 @@ public class MainCore extends Game {
 	FitViewport viewport;
 
 	public static SpriteBatch worldBatch;
+	public static SpriteBatch UIBatch;
 	public static SpriteBatch screenBatch;
 
 	public static ShapeRenderer shapeRenderer;
@@ -43,6 +46,7 @@ public class MainCore extends Game {
 	@Override
 	public void create () {
 		worldBatch = new SpriteBatch();
+		UIBatch = new SpriteBatch();
 		screenBatch = new SpriteBatch();
 
 		shapeRenderer = new ShapeRenderer();
@@ -59,6 +63,8 @@ public class MainCore extends Game {
 		viewport = new FitViewport(SCREEN_WIDTH, SCREEN_HEIGHT, renderCamera);
 
 		screenBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, SCREEN_WIDTH, SCREEN_HEIGHT, false);
+
+		UIBatch.setProjectionMatrix(renderCamera.combined);
 
 		core = new GameCore();
 		core.start();
@@ -133,16 +139,16 @@ public class MainCore extends Game {
 		}
 
 		//render UI stuff
+		UIBatch.begin();
 
-		screenBatch.begin();
-		screenBatch.setColor(Color.WHITE);
+		UIBatch.setColor(Color.WHITE);
 
 		//render the current state UI
 		if (StateManager.getCurrentState() != null && StateManager.getCurrentState().done) {
 			StateManager.getCurrentState().renderUI(Gdx.graphics.getDeltaTime());
 		}
 
-		screenBatch.end();
+		UIBatch.end();
 
 	}
 

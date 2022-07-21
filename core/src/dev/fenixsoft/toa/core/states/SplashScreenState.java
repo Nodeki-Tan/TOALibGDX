@@ -49,8 +49,8 @@ public class SplashScreenState extends State{
 
     public void renderUI(float delta) {
         tweenManager.update(delta);
-        MainCore.screenBatch.setColor(splashScreenSprite.getColor());
-        MainCore.screenBatch.draw(splashScreenSprite, 0, 0, 1280, 720);
+        MainCore.UIBatch.setColor(splashScreenSprite.getColor());
+        MainCore.UIBatch.draw(splashScreenSprite, 0, 0, 1280/2f, 720/2f);
     }
 
     @Override

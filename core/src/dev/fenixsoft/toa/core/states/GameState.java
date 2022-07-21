@@ -11,6 +11,7 @@ import dev.fenixsoft.toa.entities.LevelRenderer;
 import dev.fenixsoft.toa.entities.OverworldRenderer;
 import dev.fenixsoft.toa.entities.player.LocalPlayer;
 import dev.fenixsoft.toa.managers.AssetManager;
+import dev.fenixsoft.toa.managers.TileManager;
 import dev.fenixsoft.toa.physics.BoundingBox;
 import dev.fenixsoft.toa.physics.PhysicsConstants;
 import dev.fenixsoft.toa.stats.Stats;
@@ -101,18 +102,18 @@ public class GameState extends State{
 	public void renderUI(float delta)  {
 
 		//DEBUG DRAWS!!!
-		AssetManager.fontWhite.draw(MainCore.screenBatch, "GameCore ticks: " + GameCore.ticks, 8,32);
-		AssetManager.fontWhite.draw(MainCore.screenBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 8,64);
-		AssetManager.fontWhite.draw(MainCore.screenBatch, "Memory usage: " + currentMemory + " MB", 8,96);
-		AssetManager.fontWhite.draw(MainCore.screenBatch, "MapCore ticks: " + MapCore.ticks, 8,128);
+		AssetManager.fontWhite.draw(MainCore.UIBatch, "GameCore ticks: " + GameCore.ticks, 8,32);
+		AssetManager.fontWhite.draw(MainCore.UIBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 8,64);
+		AssetManager.fontWhite.draw(MainCore.UIBatch, "Memory usage: " + currentMemory + " MB", 8,96);
+		AssetManager.fontWhite.draw(MainCore.UIBatch, "MapCore ticks: " + MapCore.ticks, 8,128);
 
 		if(player.inLevel) {
-			AssetManager.fontWhite.draw(MainCore.screenBatch, "Player in: " + "["
+			AssetManager.fontWhite.draw(MainCore.UIBatch, "Player in: " + "["
 					+ (int)(player.getLevelPosition().x / MapCore.LEVEL_TILE_SIZE)
 					+ "," + (int)(player.getLevelPosition().y / MapCore.LEVEL_TILE_SIZE) + "]", 8,128 + 32);
 		}
 		else {
-			AssetManager.fontWhite.draw(MainCore.screenBatch, "Player in: " + "["
+			AssetManager.fontWhite.draw(MainCore.UIBatch, "Player in: " + "["
 					+ (int)(player.getOverworldPosition().x / MapCore.OVERWORLD_TILE_SIZE)
 					+ "," + (int)(player.getOverworldPosition().y / MapCore.OVERWORLD_TILE_SIZE) + "]", 8,128 + 32);
 		}

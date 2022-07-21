@@ -18,7 +18,7 @@ public class EntityManager {
 			entityList.get(i).tick(delta);
 		}
 
-		System.out.println("entities " + entityList.size());
+		//System.out.println("entities " + entityList.size());
 	}
 	
 	public static void cleanUp() {

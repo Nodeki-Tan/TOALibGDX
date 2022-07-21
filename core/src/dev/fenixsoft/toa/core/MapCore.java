@@ -26,13 +26,13 @@ public class MapCore implements Runnable{
     public static final Vector2 LEVEL_TILE_UNIT = new Vector2(LEVEL_TILE_SIZE, LEVEL_TILE_SIZE);
 
     //SIZE IN ROOMS!!!
-    public static int LEVEL_HEIGHT = 32;
-    public static int LEVEL_WIDTH = 128;
+    public static int LEVEL_HEIGHT = 16;
+    public static int LEVEL_WIDTH = 16;
 
     public static final int OVERWORLD_TILE_SIZE = 16;
 
-    public static final int OVERWORLD_LAYERS = 7;
-    public static final int OVERWORLD_SIZE = 512 / CHUNK_WIDTH;
+    public static final int OVERWORLD_LAYERS = 32;
+    public static final int OVERWORLD_SIZE = 2048 / CHUNK_WIDTH;
 
     public static final int TILE_RENDERING_BORDER = 2;
 

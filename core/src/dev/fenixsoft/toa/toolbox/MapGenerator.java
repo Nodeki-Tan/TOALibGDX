@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import dev.fenixsoft.toa.core.MapCore;
 import dev.fenixsoft.toa.mapData.Chunk;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class MapGenerator {
 
     public static final int CHUNK_WIDTH = MapCore.CHUNK_WIDTH;

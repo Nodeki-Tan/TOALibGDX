@@ -9,6 +9,7 @@ import dev.fenixsoft.toa.toolbox.MapGenerator;
 import org.lwjgl.Sys;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class LevelManager {
 
@@ -28,10 +29,13 @@ public class LevelManager {
 
         levelMapData = new Chunk[LEVEL_HEIGHT * LEVEL_WIDTH];
 
+        int X = ThreadLocalRandom.current().nextInt(0, 99999 + 1);
+        int Y = ThreadLocalRandom.current().nextInt(0, 99999 + 1);
+
         for(int i = 0; i < LEVEL_WIDTH; i++) {
             for (int j = 0; j < LEVEL_HEIGHT; j++) {
 
-                levelMapData[i + (j * LEVEL_WIDTH)] = MapGenerator.generateLevelData(i, j);
+                levelMapData[i + (j * LEVEL_WIDTH)] = MapGenerator.generateLevelData(i + X, j);
 
             }
         }

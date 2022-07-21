@@ -218,11 +218,11 @@ public class PhysicsTestState extends State{
     public void renderUI(float delta)  {
 
         //DEBUG DRAWS!!!
-        AssetManager.fontWhite.draw(MainCore.screenBatch, "GameCore ticks: " + GameCore.ticks, 8,32);
-        AssetManager.fontWhite.draw(MainCore.screenBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 8,64);
-        AssetManager.fontWhite.draw(MainCore.screenBatch, "Memory usage: " + currentMemory + " MB", 8,96);
+        AssetManager.fontWhite.draw(MainCore.UIBatch, "GameCore ticks: " + GameCore.ticks, 8,32);
+        AssetManager.fontWhite.draw(MainCore.UIBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 8,64);
+        AssetManager.fontWhite.draw(MainCore.UIBatch, "Memory usage: " + currentMemory + " MB", 8,96);
 
-        AssetManager.fontWhite.draw(MainCore.screenBatch, "Current A mover Velocity: " + player.velocity , 8,96 + 32);
+        AssetManager.fontWhite.draw(MainCore.UIBatch, "Current A mover Velocity: " + player.velocity , 8,96 + 32);
     }
 
     @Override

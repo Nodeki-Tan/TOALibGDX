@@ -25,7 +25,7 @@ public class LocalPlayer extends Player {
     float speed = 10;
     float maxSpeed = 100;
     float gravity = 300;
-    float jumpPower = 200;
+    float jumpPower = 300;
 
     public LocalPlayer(Vector2 overworldPosition, Vector2 levelPosition,
                        Stats playerStats,
@@ -39,11 +39,11 @@ public class LocalPlayer extends Player {
 
     public void tick(float delta) {
 
-        /*
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
             inLevel = !inLevel;
         }
-        */
+
 
         move(delta);
 
