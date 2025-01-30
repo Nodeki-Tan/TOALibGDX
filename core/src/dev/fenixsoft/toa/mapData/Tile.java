@@ -9,6 +9,9 @@ public class Tile {
 
     boolean special;
     boolean isSolid;
+    boolean isCliff;
+    boolean autoTile;
+    byte height;
 
     int itemDropID;
     int expDrop;
@@ -21,6 +24,9 @@ public class Tile {
 
     public Tile(boolean special,
                 boolean isSolid,
+                boolean isCliff,
+                boolean autoTile,
+                byte height,
                 int itemDropID,
                 int expDrop,
                 float resistance,
@@ -28,6 +34,9 @@ public class Tile {
                 AtlasRegion frame) {
         this.special = special;
         this.isSolid = isSolid;
+        this.isCliff = isCliff;
+        this.autoTile = autoTile;
+        this.height = height;
         this.itemDropID = itemDropID;
         this.expDrop = expDrop;
         this.resistance = resistance;
@@ -41,6 +50,18 @@ public class Tile {
 
     public boolean isSolid() {
         return isSolid;
+    }
+
+    public boolean isCliff() {
+        return isCliff;
+    }
+
+    public boolean isAutoTile() {
+        return autoTile;
+    }
+
+    public byte getHeight() {
+        return height;
     }
 
     public int getItemDropID() {

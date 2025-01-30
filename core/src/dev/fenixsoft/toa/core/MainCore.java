@@ -51,8 +51,8 @@ public class MainCore extends Game {
 
 		shapeRenderer = new ShapeRenderer();
 
-		SCREEN_WIDTH = Gdx.graphics.getWidth() / 2;
-		SCREEN_HEIGHT = Gdx.graphics.getHeight() / 2;
+		SCREEN_WIDTH = Gdx.graphics.getWidth() / 4;
+		SCREEN_HEIGHT = Gdx.graphics.getHeight() / 4;
 
 		AssetManager.initAssetsCore();
 		camera = new Camera();

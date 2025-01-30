@@ -1,11 +1,12 @@
 package dev.fenixsoft.toa.entities.player;
 
 import com.badlogic.gdx.math.Vector2;
+import dev.fenixsoft.toa.entities.Actor;
 import dev.fenixsoft.toa.entities.Entity;
 import dev.fenixsoft.toa.physics.BoundingBox;
 import dev.fenixsoft.toa.stats.Stats;
 
-public class Player{
+public class Player extends Actor {
 
     public boolean inLevel = true;
 
@@ -21,6 +22,7 @@ public class Player{
     protected Vector2 levelMoveDir = new Vector2(1,0);
 
     public Player(Vector2 overworldPosition, Vector2 levelPosition, Stats playerStats, Entity overworldSprite, Entity levelSprite, BoundingBox AABB) {
+        super(levelPosition, levelSprite.getScale(), AABB, "");
         this.overworldPosition = overworldPosition;
         this.levelPosition = levelPosition;
         this.playerStats = playerStats;

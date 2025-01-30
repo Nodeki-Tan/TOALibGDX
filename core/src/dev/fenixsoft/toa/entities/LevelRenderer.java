@@ -3,6 +3,7 @@ package dev.fenixsoft.toa.entities;
 import com.badlogic.gdx.math.Vector2;
 import dev.fenixsoft.toa.core.MainCore;
 import dev.fenixsoft.toa.core.MapCore;
+import dev.fenixsoft.toa.managers.AssetManager;
 import dev.fenixsoft.toa.managers.TileManager;
 
 public class LevelRenderer extends Entity{
@@ -38,15 +39,52 @@ public class LevelRenderer extends Entity{
             for(int j = -MapCore.TILE_RENDERING_BORDER;
                 j < (MainCore.SCREEN_HEIGHT / MapCore.LEVEL_TILE_SIZE) + MapCore.TILE_RENDERING_BORDER; j++) {
 
+                if(MapCore.getLevelTile(dataX + i, dataY + j) == 6){
+
+                    MainCore.worldBatch.draw(
+                            AssetManager.entityAtlas.findRegions("Tiles/Overworld/Dirt").get(MapCore.getFrameAt(dataX + i, dataY + j)),
+                            x + (i * MapCore.LEVEL_TILE_SIZE),
+                            y + (j * MapCore.LEVEL_TILE_SIZE),
+                            MapCore.LEVEL_TILE_SIZE,
+                            MapCore.LEVEL_TILE_SIZE);
+
+                }/*else if(MapCore.getLevelTile(dataX + i, dataY + j) == 3){
+
+                    MainCore.worldBatch.draw(
+                            AssetManager.entityAtlas.findRegions("Tiles/Overworld/Sand").get(MapCore.getFrameAt(dataX + i, dataY + j)),
+                            x + (i * MapCore.LEVEL_TILE_SIZE),
+                            y + (j * MapCore.LEVEL_TILE_SIZE),
+                            MapCore.LEVEL_TILE_SIZE,
+                            MapCore.LEVEL_TILE_SIZE);
+
+                } */else if(MapCore.getLevelTile(dataX + i, dataY + j) == 2){
+
+                    MainCore.worldBatch.draw(
+                            AssetManager.entityAtlas.findRegions("Tiles/Overworld/Water").get(MapCore.getFrameAt(dataX + i, dataY + j)),
+                            x + (i * MapCore.LEVEL_TILE_SIZE),
+                            y + (j * MapCore.LEVEL_TILE_SIZE),
+                            MapCore.LEVEL_TILE_SIZE,
+                            MapCore.LEVEL_TILE_SIZE);
+
+                } else if(MapCore.getLevelTile(dataX + i, dataY + j) == 4){
+
                 MainCore.worldBatch.draw(
-                        TileManager.TILE_LIST.get(
-                        MapCore.getLevelTile(dataX + i, dataY + j))
-                                .getFrame(),
-                        x  + (i * MapCore.LEVEL_TILE_SIZE),
-                        y  + (j * MapCore.LEVEL_TILE_SIZE),
+                        AssetManager.entityAtlas.findRegions("Tiles/Overworld/Grass").get(MapCore.getFrameAt(dataX + i, dataY + j)),
+                        x + (i * MapCore.LEVEL_TILE_SIZE),
+                        y + (j * MapCore.LEVEL_TILE_SIZE),
                         MapCore.LEVEL_TILE_SIZE,
                         MapCore.LEVEL_TILE_SIZE);
 
+                } else {
+                    MainCore.worldBatch.draw(
+                            TileManager.TILE_LIST.get(
+                                            MapCore.getLevelTile(dataX + i, dataY + j))
+                                    .getFrame(),
+                            x + (i * MapCore.LEVEL_TILE_SIZE),
+                            y + (j * MapCore.LEVEL_TILE_SIZE),
+                            MapCore.LEVEL_TILE_SIZE,
+                            MapCore.LEVEL_TILE_SIZE);
+                }
             }
         }
 

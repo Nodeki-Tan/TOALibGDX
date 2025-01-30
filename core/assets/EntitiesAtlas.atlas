@@ -6,323 +6,764 @@ filter: Nearest, Nearest
 repeat: none
 Entities/Furniture/Torch
   rotate: false
-  xy: 103, 67
+  xy: 517, 463
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
   index: 0
 Entities/Furniture/WoodenDoor
   rotate: false
-  xy: 1351, 1117
+  xy: 1283, 1023
   size: 16, 24
   orig: 16, 24
   offset: 0, 0
   index: 0
-Entities/Human/Idle
+Entities/Human/Player/Idle/Idle
   rotate: false
-  xy: 1333, 1117
-  size: 16, 24
-  orig: 16, 24
+  xy: 1333, 1309
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
   index: 0
 Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1283, 1143
-  size: 48, 26
-  orig: 48, 26
+  xy: 1333, 1309
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
-  index: 0
+  index: 1
 Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1283, 1143
-  size: 48, 26
-  orig: 48, 26
+  xy: 1333, 1309
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 3
+Entities/Human/Player/IdleDown/IdleDown
+  rotate: false
+  xy: 323, 403
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 0
+Entities/Human/Player/RunDown/RunDown
+  rotate: false
+  xy: 323, 403
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 3
+Entities/Human/Player/RunDown/RunDown
+  rotate: false
+  xy: 323, 403
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 1
+Entities/Human/Player/IdleUp/IdleUp
+  rotate: false
+  xy: 1283, 1225
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 0
+Entities/Human/Player/RunUp/RunUp
+  rotate: false
+  xy: 1283, 1225
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 1
+Entities/Human/Player/RunUp/RunUp
+  rotate: false
+  xy: 1283, 1225
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
   index: 3
 Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1645, 1325
-  size: 48, 26
-  orig: 48, 26
+  xy: 1645, 1421
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
-  index: 1
+  index: 0
 Entities/Human/Player/Run/Run
   rotate: false
-  xy: 1, 57
-  size: 48, 26
-  orig: 48, 26
+  xy: 1, 137
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
   index: 2
-Entities/Human/Player/Run/Run
+Entities/Human/Player/RunDown/RunDown
   rotate: false
-  xy: 323, 239
-  size: 48, 26
-  orig: 48, 26
+  xy: 1645, 1471
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
-  index: 4
-Entities/Human/Player/Run/Run
+  index: 0
+Entities/Human/Player/RunDown/RunDown
   rotate: false
-  xy: 1283, 1115
-  size: 48, 26
-  orig: 48, 26
+  xy: 1, 187
+  size: 24, 48
+  orig: 24, 48
   offset: 0, 0
-  index: 5
+  index: 2
+Entities/Human/Player/RunUp/RunUp
+  rotate: false
+  xy: 323, 353
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 0
+Entities/Human/Player/RunUp/RunUp
+  rotate: false
+  xy: 1283, 1175
+  size: 24, 48
+  orig: 24, 48
+  offset: 0, 0
+  index: 2
 Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1333, 1143
+  xy: 1283, 1357
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 0
 Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1645, 1297
+  xy: 1645, 1539
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 1
 Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1695, 1325
+  xy: 1, 271
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 2
 Entities/Human/Player/Stab/Stab
   rotate: false
-  xy: 1, 29
+  xy: 323, 453
   size: 48, 26
   orig: 48, 26
   offset: 0, 0
   index: 3
 Entities/Human/Walk
   rotate: false
-  xy: 1283, 1081
+  xy: 1, 237
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Entities/Nature/Cloud
   rotate: false
-  xy: 51, 59
+  xy: 1333, 1359
   size: 32, 24
   orig: 32, 24
   offset: 0, 0
   index: 0
 Entities/Nature/Cloud
   rotate: false
-  xy: 323, 221
+  xy: 1645, 1521
   size: 32, 16
   orig: 32, 16
   offset: 0, 0
   index: 1
 Entities/Nature/Cloud
   rotate: false
-  xy: 373, 241
+  xy: 1695, 1541
   size: 32, 24
   orig: 32, 24
   offset: 0, 0
   index: 2
+Entities/Nature/Tree
+  rotate: false
+  xy: 1283, 1275
+  size: 48, 80
+  orig: 48, 80
+  offset: 0, 0
+  index: 0
 Entities/OverWorld/Viking
   rotate: false
-  xy: 407, 249
+  xy: 1819, 1549
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 0
 Entities/OverWorld/Viking
   rotate: false
-  xy: 1283, 1063
+  xy: 1283, 1067
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 GUI/GUI
   rotate: false
-  xy: 1, 85
+  xy: 1, 299
   size: 320, 180
   orig: 320, 180
   offset: 0, 0
   index: -1
 GUI/NAOSoftLogo
   rotate: false
-  xy: 1283, 1171
+  xy: 1283, 1385
   size: 360, 180
   orig: 360, 180
   offset: 0, 0
   index: -1
 Parallax/Capa
   rotate: false
-  xy: 1, 991
+  xy: 1, 1205
   size: 1280, 360
   orig: 1280, 360
   offset: 0, 0
   index: 0
 Parallax/Capa
   rotate: false
-  xy: 1, 629
+  xy: 1, 843
   size: 1280, 360
   orig: 1280, 360
   offset: 0, 0
   index: 1
 Parallax/Capa
   rotate: false
-  xy: 1, 267
+  xy: 1, 481
   size: 1280, 360
   orig: 1280, 360
   offset: 0, 0
   index: 2
 Tiles/Level/Tile
   rotate: false
-  xy: 357, 229
+  xy: 1679, 1529
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 0
 Tiles/Level/Tile
   rotate: false
-  xy: 1317, 1105
+  xy: 35, 261
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 1
 Tiles/Level/Tile
   rotate: false
-  xy: 1383, 1143
+  xy: 51, 271
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 2
 Tiles/Level/Tile
   rotate: false
-  xy: 1401, 1161
+  xy: 373, 453
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 3
 Tiles/Level/Tile
   rotate: false
-  xy: 1645, 1269
+  xy: 367, 443
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 4
 Tiles/Level/Tile
   rotate: false
-  xy: 1663, 1287
+  xy: 1333, 1281
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 5
 Tiles/Level/Tile
   rotate: false
-  xy: 1695, 1297
+  xy: 349, 353
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 6
 Tiles/Level/Tile
   rotate: false
-  xy: 1713, 1315
+  xy: 341, 343
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 7
 Tiles/Level/Tile
   rotate: false
-  xy: 1745, 1325
+  xy: 1309, 1175
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 8
 Tiles/Level/Tile
   rotate: false
-  xy: 1763, 1343
+  xy: 1301, 1165
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 9
 Tiles/Level/Tile
   rotate: false
-  xy: 1, 1
+  xy: 1493, 1375
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 10
 Tiles/Level/Tile
   rotate: false
-  xy: 19, 19
+  xy: 1855, 1557
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 11
 Tiles/Level/Tile
   rotate: false
-  xy: 51, 31
+  xy: 1, 1
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 12
 Tiles/Level/Tile
   rotate: false
-  xy: 69, 49
+  xy: 195, 289
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 13
-Tiles/Overworld/Tile
+Tiles/Overworld/Dirt
   rotate: false
-  xy: 1383, 1153
+  xy: 51, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 51, 281
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 0
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1645, 1279
+  xy: 51, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 373, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1367, 1367
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1729, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 349, 435
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1309, 1257
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1333, 1291
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 323, 335
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1283, 1157
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1645, 1403
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 9
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1, 119
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 10
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 69, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 11
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 391, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 12
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1385, 1367
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 13
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1747, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 14
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 349, 417
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 15
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1309, 1239
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 16
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 323, 317
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 17
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1283, 1139
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 18
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1645, 1385
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 19
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1, 101
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 20
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 87, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 21
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 409, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 22
+Tiles/Overworld/Dirt
+  rotate: false
+  xy: 1403, 1367
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 23
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 1765, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 349, 399
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 1309, 1221
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 323, 299
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 1283, 1121
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 1, 83
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 105, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 427, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+Tiles/Overworld/Grass
+  rotate: false
+  xy: 1421, 1367
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 9
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 1783, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 1783, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 349, 381
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 1309, 1203
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 1283, 1103
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 1, 65
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 123, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 445, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 1439, 1367
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 1801, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+Tiles/Overworld/Sand
+  rotate: false
+  xy: 349, 363
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 9
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 1309, 1185
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+Tiles/Overworld/Tile
+  rotate: false
+  xy: 1283, 1085
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1695, 1307
+  xy: 1, 47
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
-Tiles/Overworld/Tile
+Tiles/Overworld/Water
   rotate: false
-  xy: 1745, 1335
+  xy: 1, 47
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 3
+  index: 0
 Tiles/Overworld/Tile
   rotate: false
-  xy: 1, 11
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: 4
-Tiles/Overworld/Tile
-  rotate: false
-  xy: 51, 41
+  xy: 141, 281
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 5
 Tiles/Overworld/Tile
   rotate: false
-  xy: 85, 67
+  xy: 463, 463
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 6
 Tiles/Overworld/Tile
   rotate: false
-  xy: 323, 203
+  xy: 1457, 1367
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 7
+Tiles/Overworld/Water
+  rotate: false
+  xy: 1, 29
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+Tiles/Overworld/Water
+  rotate: false
+  xy: 159, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+Tiles/Overworld/Water
+  rotate: false
+  xy: 481, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+Tiles/Overworld/Water
+  rotate: false
+  xy: 1475, 1367
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+Tiles/Overworld/Water
+  rotate: false
+  xy: 1837, 1549
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+Tiles/Overworld/Water
+  rotate: false
+  xy: 1283, 1049
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+Tiles/Overworld/Water
+  rotate: false
+  xy: 1, 11
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+Tiles/Overworld/Water
+  rotate: false
+  xy: 177, 281
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+Tiles/Overworld/Water
+  rotate: false
+  xy: 499, 463
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 9

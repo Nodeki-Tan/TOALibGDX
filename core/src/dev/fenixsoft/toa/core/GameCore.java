@@ -33,7 +33,7 @@ public class GameCore implements Runnable{
 		gameState = new GameState();
 		physicsDebugState = new PhysicsTestState();
 		guiTestState = new GuiTestState();
-		StateManager.setCurrentState(splashState);
+		StateManager.setCurrentState(gameState);
 		
 	}
 	

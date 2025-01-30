@@ -6,9 +6,11 @@ import dev.fenixsoft.toa.managers.LevelManager;
 import dev.fenixsoft.toa.managers.TileManager;
 import dev.fenixsoft.toa.mapData.Chunk;
 import dev.fenixsoft.toa.toolbox.MapGenerator;
+import dev.fenixsoft.toa.toolbox.SimplexNoise;
 import dev.fenixsoft.toa.toolbox.Utils;
 
 import java.io.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MapCore implements Runnable{
 
@@ -20,19 +22,19 @@ public class MapCore implements Runnable{
     public static int ticks = 0;
 
     public static final int CHUNK_WIDTH = 32;
-    public static final int LEVEL_TILE_SIZE = 8;
+    public static final int LEVEL_TILE_SIZE = 16;
 
     public static final Vector2 CHUNK_SIZE_UNIT = new Vector2(LEVEL_TILE_SIZE * CHUNK_WIDTH, LEVEL_TILE_SIZE * CHUNK_WIDTH);
     public static final Vector2 LEVEL_TILE_UNIT = new Vector2(LEVEL_TILE_SIZE, LEVEL_TILE_SIZE);
 
     //SIZE IN ROOMS!!!
-    public static int LEVEL_HEIGHT = 16;
-    public static int LEVEL_WIDTH = 16;
+    public static int LEVEL_HEIGHT = 128;
+    public static int LEVEL_WIDTH = 128;
 
     public static final int OVERWORLD_TILE_SIZE = 16;
 
-    public static final int OVERWORLD_LAYERS = 32;
-    public static final int OVERWORLD_SIZE = 2048 / CHUNK_WIDTH;
+    public static final int OVERWORLD_LAYERS = 1;
+    public static final int OVERWORLD_SIZE = (4096*2) / CHUNK_WIDTH;
 
     public static final int TILE_RENDERING_BORDER = 2;
 
@@ -44,20 +46,374 @@ public class MapCore implements Runnable{
     //private final static Map<String,float[]> heightData = new ConcurrentHashMap<>();
     //private final static Map<String,float[]> biomeData = new ConcurrentHashMap<>();
 
-    public static int seed = 0;
+    public int seed = 0;
+
+    public static int getFrameAt(int x, int y) {
+
+        boolean isCliff = TileManager.TILE_LIST.get(MapCore.getLevelTile(x,y)).isCliff();
+        boolean isAutoTile = TileManager.TILE_LIST.get(MapCore.getLevelTile(x,y)).isAutoTile();
+
+        int result = 0;
+
+        short tile = getLevelTile(x,y);
+
+        // Base ones
+        short top, down, left, right, topRight, topLeft, downRight, downLeft;
+
+        top = getLevelTile(x,y+1);
+        down = getLevelTile(x,y-1);
+        left = getLevelTile(x-1,y);
+        right = getLevelTile(x+1,y);
+
+        topRight = getLevelTile(x+1,y+1);
+        topLeft = getLevelTile(x-1,y+1);
+
+        downRight = getLevelTile(x+1,y-1);
+        downLeft = getLevelTile(x-1,y-1);
+
+        // Row 2
+        short borderMid, borderLeft, borderRight;
+        int multi = 2;
+        borderMid = getLevelTile(x,y+multi);
+
+        borderLeft = getLevelTile(x-1,y+multi);
+        borderRight = getLevelTile(x+1,y+multi);
+
+        // Row 3
+        short farMid, farLeft, farRight;
+        farMid = getLevelTile(x,y-multi);
+
+        farLeft = getLevelTile(x-1,y-multi);
+        farRight = getLevelTile(x+1,y-multi);
+
+        // Row 3
+        short farFarMid;
+        farFarMid = getLevelTile(x,y-3);
+
+        // Row 4
+        short farFarFarMid;
+        farFarFarMid = getLevelTile(x,y-4);
+
+        if (down != tile)
+        {
+            result = 8;
+        }
+
+        if (top != tile)
+        {
+            result = 3;
+        }
+
+        if (left != tile)
+        {
+            result = 5;
+        }
+
+        if (right != tile)
+        {
+            result = 6;
+        }
+
+        if(!isCliff) {
+            if (down != tile && left != tile) {
+                result = 7;
+            }
+
+            if (down != tile && right != tile) {
+                result = 9;
+            }
+        }else{
+
+            if (down != tile && left != tile) {
+                result = 23;
+            }
+
+            if (down != tile && right != tile) {
+                result = 22;
+            }
+
+        }
+
+        if (top != tile && left != tile)
+        {
+            result = 2;
+        }
+
+        if (top != tile && right != tile)
+        {
+            result = 4;
+        }
+
+        if(isCliff) {
+
+            if (top == tile && right != tile && down != tile && left != tile) {
+                result = 19;
+            }
+
+            if (top != tile && right == tile && down != tile && left != tile) {
+                result = 16;
+            }
+
+            if (top != tile && right != tile && down == tile && left != tile) {
+                result = 17;
+            }
+
+            if (top != tile && right != tile && down != tile && left == tile) {
+                result = 18;
+            }
+
+            if (top != tile && right == tile && down != tile && left == tile) {
+                result = 20;
+            }
+
+            if (top == tile && right != tile && down == tile && left != tile) {
+                result = 21;
+            }
+        }
+
+        if (top != tile && right != tile && down != tile && left != tile)
+        {
+            result = 1;
+        }
+
+        if(isCliff) {
+
+            // Tier 1 cliffs
+            if(down == tile && top == tile && farMid != tile || down != tile && top == tile && farMid != tile ){
+
+                if (down == tile && left == tile && top == tile && right != tile
+                        && farMid == tile)
+                {
+                    result = 6;
+                }
+
+                if (down == tile && left != tile && top == tile && right == tile
+                        && farMid == tile)
+                {
+                    result = 5;
+                }
+
+                if (down != tile && left != tile && top == tile && right == tile
+                        && topRight == tile ) {
+                    result = 13;
+                }
+
+                if (down != tile && left == tile && top == tile && right != tile
+                        && topLeft == tile
+                ) {
+                    result = 15;
+                }
+
+                if (down != tile && left == tile && top == tile && right == tile
+                        && topRight == tile && topLeft == tile
+                ) {
+                    result = 14;
+                }
+
+                if ( down == tile && left != tile && top == tile && right == tile
+                        && topRight == tile
+                        && farMid != tile
+                ){
+                    result = 7;
+                }
+
+                if ( down == tile && left == tile && top == tile && right == tile
+                        && topRight == tile && topLeft == tile
+
+                        && farMid != tile
+                        && downLeft != tile
+                ){
+                    result = 7;
+                }
+
+                if ( down == tile && left == tile && top == tile && right != tile
+                        && topLeft == tile
+                        && farMid != tile
+                ){
+                    result = 9;
+                }
+
+                if ( down == tile && left == tile && top == tile && right == tile
+                        && topRight == tile && topLeft == tile
+
+                        && farMid != tile
+                        && downRight != tile
+                ){
+                    result = 9;
+                }
+
+                if ( down == tile && left == tile && top == tile && right == tile
+                        && topLeft == tile && topRight == tile
+                        && downLeft == tile && downRight == tile
+                        && farMid != tile
+                ){
+                    result = 8;
+                }
+
+            }
+
+            if (down != tile && left == tile && top == tile && right == tile
+                    && topRight == tile && topLeft == tile
+                    && borderMid == tile && borderLeft == tile && borderRight == tile
+            ) {
+                result = 14;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && topRight == tile && topLeft == tile
+                    && downLeft == tile && downRight == tile
+                    && farMid != tile) {
+                result = 11;
+            }
+
+            if (down != tile && left != tile && top == tile && right == tile
+                    && topRight == tile
+                    && borderMid == tile && borderRight == tile
+            ) {
+                result = 13;
+            }
+
+            if (down == tile && left != tile && top == tile && right == tile
+                    && topRight == tile
+                    && downRight == tile
+            ) {
+                result = 10;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && topRight == tile
+                    && downRight == tile
+                    && topLeft == tile
+                    && downLeft != tile
+            ) {
+                result = 10;
+            }
+
+            if (down == tile && left == tile && top == tile && right != tile
+                    && topLeft == tile
+                    && downLeft == tile
+            ) {
+                result = 12;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && topLeft == tile
+                    && downLeft == tile
+                    && topRight == tile
+                    && downRight != tile
+            ) {
+                result = 12;
+            }
+
+            if (down != tile && left == tile && top == tile && right != tile
+                    && topLeft == tile
+                    && borderMid == tile && borderLeft == tile
+            ) {
+                result = 15;
+            }
+
+            if ( down == tile && left == tile && top == tile && right == tile
+                    && topLeft == tile && topRight == tile
+                    && downLeft == tile && downRight == tile
+                    && farMid == tile && farFarMid != tile
+            ){
+                result = 8;
+            }
+
+            if ( down == tile && left != tile && top == tile && right == tile
+                    && topRight == tile
+                    && farFarMid != tile
+                    && farMid == tile
+            ){
+                result = 7;
+            }
+
+            if ( down == tile && left == tile && top == tile && right == tile
+                    && topRight == tile && topLeft == tile
+
+                    && farMid == tile && farFarMid != tile
+                    && farLeft != tile
+            ){
+                result = 7;
+            }
+
+            if ( down == tile && left == tile && top == tile && right != tile
+                    && topLeft == tile
+                    && farFarMid != tile
+                    && farMid == tile
+            ){
+                result = 9;
+            }
+
+            if ( down == tile && left == tile && top == tile && right == tile
+                    && topRight == tile && topLeft == tile
+                    && farMid == tile && farFarMid != tile
+                    && farRight != tile
+            ){
+                result = 9;
+            }
+
+            if (down == tile && left == tile && top == tile && right != tile
+                    && farMid == tile && farFarMid == tile )
+            {
+                result = 6;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && farMid == tile && farFarMid == tile && farRight != tile)
+            {
+                result = 6;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && farMid == tile && farFarMid == tile && downRight != tile)
+            {
+                result = 6;
+            }
+
+            if (down == tile && left != tile && top == tile && right == tile
+                    && farMid == tile && farFarMid == tile )
+            {
+                result = 5;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && farMid == tile && farFarMid == tile && farLeft != tile)
+            {
+                result = 5;
+            }
+
+            if (down == tile && left == tile && top == tile && right == tile
+                    && farMid == tile && farFarMid == tile && downLeft != tile)
+            {
+                result = 5;
+            }
+
+        }
+
+        return result;
+    }
 
     void init(){
+
+        int X = ThreadLocalRandom.current().nextInt(0, 99999);
+        int Y = ThreadLocalRandom.current().nextInt(0, 99999);
+
+        float scale = ThreadLocalRandom.current().nextInt(150, 500);
+
+        float persistance = 0.25f;
+        float lacunarity = ThreadLocalRandom.current().nextInt(3, 5);
 
         for(int i = 0; i < OVERWORLD_SIZE; i++) {
             for (int j = 0; j < OVERWORLD_SIZE; j++) {
                 for (int z = 0; z < OVERWORLD_LAYERS; z++) {
-
+                    /*
                     overworldMapData[i +
                             (j * OVERWORLD_SIZE) +
                             (z *
                                     (OVERWORLD_SIZE * OVERWORLD_SIZE)
-                            )] =  MapGenerator.generateData(i,j);
-
+                            )] =  MapGenerator.generateData(i + X,j + Y, i, j, scale, persistance, lacunarity);
+                    */
                 }
             }
         }
@@ -421,7 +777,7 @@ public class MapCore implements Runnable{
         }
 
         if(LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)] != null) {
-            //System.out.println("Chunk in [" + (int)xChunk + "," + (int)yChunk + "," + (int)zChunk +"]");
+            //System.out.println("Chunk in [" + (int)xChunk + "," + (int)yChunk +"]");
             LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)].
                     setTile((int) xTile, (int) yTile, value);
         }
@@ -449,7 +805,7 @@ public class MapCore implements Runnable{
         if(xPos <=-1 || yPos <=-1
         || xPos >= LEVEL_WIDTH * CHUNK_WIDTH
         || yPos >= LEVEL_HEIGHT * CHUNK_WIDTH){
-            return 13;
+            return 0;
         }
 
         if(LevelManager.getLevelMapData()[(int)xChunk + ((int)yChunk * LEVEL_WIDTH)] != null) {
@@ -458,7 +814,7 @@ public class MapCore implements Runnable{
                     getTile((int)xTile, (int)yTile);
         }
 
-        return 13;
+        return 0;
     }
 
     public static int getGroundInLevel(int xPos, int yPos){

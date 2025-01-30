@@ -187,13 +187,13 @@ public class UiGrid {
 
     }
 
-    public final void moveCursorVertical(boolean up, dev.minimallogic.uisystem.ui.Options options) {
+    /*public final void moveCursorVertical(boolean up, dev.minimallogic.uisystem.ui.Options options) {
 
     }
 
     public final void moveCursorHorizontal(boolean right, dev.minimallogic.uisystem.ui.Options options) {
 
-    }
+    }*/
 
     public UiSprite getBlockAt(int x, int y) {
         UiSprite sprite = ItemsList.get(new Vector2(x,y));

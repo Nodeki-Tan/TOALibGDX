@@ -3,7 +3,9 @@ package dev.fenixsoft.toa.entities.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import dev.fenixsoft.toa.core.GameCore;
 import dev.fenixsoft.toa.core.MapCore;
+import dev.fenixsoft.toa.core.states.GameState;
 import dev.fenixsoft.toa.entities.Camera;
 import dev.fenixsoft.toa.entities.Entity;
 import dev.fenixsoft.toa.managers.LevelManager;
@@ -22,10 +24,12 @@ public class LocalPlayer extends Player {
     int frame = 1;
     private float elapsedTime = 0.0f;
 
-    float speed = 10;
-    float maxSpeed = 100;
+    float speed = 100;
+    float maxSpeed = 1000;
     float gravity = 300;
     float jumpPower = 300;
+
+    int direction = 0;
 
     public LocalPlayer(Vector2 overworldPosition, Vector2 levelPosition,
                        Stats playerStats,
@@ -53,25 +57,62 @@ public class LocalPlayer extends Player {
 
         if (inLevel){
 
-            levelAABB.velocity.y -= gravity * delta;
+            levelAABB.velocity.x = 0;
+
+            levelAABB.velocity.y = 0;
+
+            //levelAABB.velocity.y -= gravity * delta;
 
             if (levelMoveDir.x == -2)
                 levelMoveDir.x = -1;
             else if (levelMoveDir.x == 2)
                 levelMoveDir.x = 1;
 
-
-            if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
                 levelAABB.velocity.x += speed;
 
                 levelMoveDir.x = 2;
+
+                direction = 2;
             }
-            if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
                 levelAABB.velocity.x -= speed;
 
                 levelMoveDir.x = -2;
+
+                direction = 3;
             }
 
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                levelAABB.velocity.y -= speed;
+
+                levelMoveDir.y = -2;
+
+                direction = 0;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                levelAABB.velocity.y += speed;
+
+                levelMoveDir.y = 2;
+
+                direction = 1;
+            }
+
+
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+                MapCore.setLevelTile((int)levelPosition.x / MapCore.LEVEL_TILE_SIZE, (int)levelPosition.y  / MapCore.LEVEL_TILE_SIZE, (short) 6);
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
+                GameCore.debugMode = !GameCore.debugMode;
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+                GameState.SpawnActor(new Vector2(levelPosition.x, levelPosition.y), "Nature/Tree", new Vector2(48 / MapCore.LEVEL_TILE_SIZE, 80 / MapCore.LEVEL_TILE_SIZE), new Vector2(12, 8), true);
+            }
+
+            /*
             RayContactResult out = new RayContactResult();
 
             Vector2 rayOrig = new Vector2(
@@ -90,6 +131,7 @@ public class LocalPlayer extends Player {
                     levelAABB.velocity.y = jumpPower;
                 }
             }
+            */
 
             if (levelAABB.velocity.x >= maxSpeed){
                 levelAABB.velocity.x = maxSpeed;
@@ -97,10 +139,25 @@ public class LocalPlayer extends Player {
                 levelAABB.velocity.x = -maxSpeed;
             }
 
-            if (levelAABB.velocity.y >= jumpPower){
-                levelAABB.velocity.y = jumpPower;
-            } else if (levelAABB.velocity.y <= -gravity){
-                levelAABB.velocity.y = -gravity;
+            if (levelAABB.velocity.y >= maxSpeed){
+                levelAABB.velocity.y = maxSpeed;
+            } else if (levelAABB.velocity.y <= -maxSpeed){
+                levelAABB.velocity.y = -maxSpeed;
+            }
+
+            float minMov = 0.25f;
+            float friction = 0.9f;
+
+            levelAABB.velocity.x *= friction;
+
+            if (levelAABB.velocity.x <= minMov && levelAABB.velocity.x >= -minMov) {
+                levelAABB.velocity.x = 0;
+            }
+
+            levelAABB.velocity.y *= friction;
+
+            if (levelAABB.velocity.y <= minMov && levelAABB.velocity.y >= -minMov) {
+                levelAABB.velocity.y = 0;
             }
 
             LevelManager.levelCollisionSolving(levelAABB, delta);
@@ -131,9 +188,9 @@ public class LocalPlayer extends Player {
             elapsedTime = 0;
 
 
-            if(levelMoveDir.x == -2 || levelMoveDir.x == 2) {
+            if(levelAABB.velocity != Vector2.Zero) {
                 frame++;
-                if (frame >= 6) frame = 0;
+                if (frame >= 4) frame = 0;
             }else{
                 frame = 1;
             }
@@ -172,16 +229,32 @@ public class LocalPlayer extends Player {
 
         if (inLevel){
 
-            if(levelMoveDir.x == -2|| levelMoveDir.x == 2)
-                if (levelMoveDir.x == -2)
-                    levelSprite.render("Entities/Human/Player/Run/Run", frame, 18, 1, true);
-                else
-                    levelSprite.render("Entities/Human/Player/Run/Run", frame, 18, 1);
-            else if(levelMoveDir.x == -1|| levelMoveDir.x == 1)
-                if (levelMoveDir.x == -1)
-                    levelSprite.render("Entities/Human/Player/Run/Run", 0, 18, 1, true);
-                else
-                    levelSprite.render("Entities/Human/Player/Run/Run", 0, 18, 1);
+            if(levelAABB.velocity.y <= 1 && levelAABB.velocity.y >= -1 && levelAABB.velocity.x <= 1 && levelAABB.velocity.x >= -1) {
+
+                if (direction == 3) {
+                    levelSprite.render("Entities/Human/Player/Idle/Idle", 0, 8, 1, true);
+                }else if (direction == 2) {
+                    levelSprite.render("Entities/Human/Player/Idle/Idle", 0, 8, 1);
+                }else if (direction == 1) {
+                    levelSprite.render("Entities/Human/Player/IdleUp/IdleUp", 0, 8, 1, true);
+                }else if (direction == 0) {
+                    levelSprite.render("Entities/Human/Player/IdleDown/IdleDown", 0, 8, 1);
+                }
+
+            }else{
+
+                if (direction == 3) {
+                    levelSprite.render("Entities/Human/Player/Run/Run", frame, 8, 1, true);
+                }else if (direction == 2){
+                    levelSprite.render("Entities/Human/Player/Run/Run", frame, 8, 1);
+                }else if (direction == 1) {
+                    levelSprite.render("Entities/Human/Player/RunUp/RunUp", frame, 8, 1, true);
+                }else if (direction == 0) {
+                    levelSprite.render("Entities/Human/Player/RunDown/RunDown", frame, 8, 1);
+                }
+
+            }
+
 
         }
         else {

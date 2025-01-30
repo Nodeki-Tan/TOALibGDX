@@ -3,6 +3,7 @@ package dev.fenixsoft.toa.managers;
 import com.badlogic.gdx.math.Vector2;
 import dev.fenixsoft.toa.core.MainCore;
 import dev.fenixsoft.toa.core.MapCore;
+import dev.fenixsoft.toa.entities.Actor;
 import dev.fenixsoft.toa.mapData.Chunk;
 import dev.fenixsoft.toa.physics.*;
 import dev.fenixsoft.toa.toolbox.MapGenerator;
@@ -17,9 +18,11 @@ public class LevelManager {
     private static Map<Vector2, ArrayList<BoundingBox>> levelChunkPhysicsWorld = new HashMap<Vector2, ArrayList<BoundingBox>>();
     private static Map<Vector2, ArrayList<BoundingBox>> levelEntityPhysicsWorld = new HashMap<Vector2, ArrayList<BoundingBox>>();
 
+    public static List<Actor> actorList = new ArrayList<>();
+
     private static Map<Vector2, BoundingBox> levelPhysicsAreas = new HashMap<Vector2, BoundingBox>();
 
-     static int LEVEL_HEIGHT =0;
+    static int LEVEL_HEIGHT;
     static int LEVEL_WIDTH;
 
     public static void createLevel(int _LEVEL_HEIGHT, int _LEVEL_WIDTH){
@@ -29,13 +32,63 @@ public class LevelManager {
 
         levelMapData = new Chunk[LEVEL_HEIGHT * LEVEL_WIDTH];
 
-        int X = ThreadLocalRandom.current().nextInt(0, 99999 + 1);
-        int Y = ThreadLocalRandom.current().nextInt(0, 99999 + 1);
+        int X = ThreadLocalRandom.current().nextInt(0, 99999);
+        int Y = ThreadLocalRandom.current().nextInt(0, 99999);
+
+        float scale = ThreadLocalRandom.current().nextInt(150, 500);
+
+        float persistance = 0.25f;
+        float lacunarity = ThreadLocalRandom.current().nextInt(3, 5);
 
         for(int i = 0; i < LEVEL_WIDTH; i++) {
             for (int j = 0; j < LEVEL_HEIGHT; j++) {
 
-                levelMapData[i + (j * LEVEL_WIDTH)] = MapGenerator.generateLevelData(i + X, j);
+                levelMapData[i + (j * LEVEL_WIDTH)] = MapGenerator.generateData(i + 0, j + 0, i, j, 200, persistance, 4);
+
+            }
+        }
+
+        // Hack for correcting cliffs
+
+        for(int i = 0; i < LEVEL_WIDTH; i++) {
+            for (int j = 0; j < LEVEL_HEIGHT; j++) {
+
+
+                for(int x = 0; x < MapCore.CHUNK_WIDTH; x++) {
+                    for (int y = 0; y < MapCore.CHUNK_WIDTH; y++) {
+
+                        int TY, TX;
+
+                        TX = x + (i * MapCore.CHUNK_WIDTH);
+                        TY = y + (j * MapCore.CHUNK_WIDTH);
+
+                        // Base ones
+                        short top, down, left, right;
+                        short tile = MapCore.getLevelTile(TX, TY);
+
+                        top = MapCore.getLevelTile(x,y+1);
+                        down = MapCore.getLevelTile(x,y-1);
+                        left = MapCore.getLevelTile(x-1,y);
+                        right = MapCore.getLevelTile(x+1,y);
+
+                        //if (top == tile || right == tile || down == tile || left == tile) {
+
+                            if (tile == 6) {
+                                MapCore.setLevelTile(TX, TY - 1, (short) 6);
+                                MapCore.setLevelTile(TX, TY - 2, (short) 6);
+                                MapCore.setLevelTile(TX, TY - 3, (short) 6);
+
+                                MapCore.setLevelTile(TX - 1, TY, (short) 6);
+
+                                MapCore.setLevelTile(TX - 1, TY - 1, (short) 6);
+                                MapCore.setLevelTile(TX - 1, TY - 2, (short) 6);
+                                MapCore.setLevelTile(TX - 1, TY - 3, (short) 6);
+                            }
+
+                        //}
+
+                    }
+                }
 
             }
         }
@@ -173,6 +226,10 @@ public class LevelManager {
 
             }
 
+        }
+
+        for (Actor actor: actorList) {
+            AABBs.add(actor.getLevelAABB());
         }
 
         PhysicsSolver.solveIteractionsInArea(mover, AABBs, delta);

@@ -40,13 +40,9 @@ public class HeightGenerator {
 	*/
 
     //THIS MAKES BIOMES!
-    public static float[] GenerateNoiseMap(int x, int z){
+    public static float[] GenerateNoiseMap(int x, int z, float scale, float persistance, float lacunarity){
 
         int octaves = 4;
-        float scale = 80f;
-
-        float persistance = .25f;
-        float lacunarity = 4f;
 
         float[] noiseMap = new float[CHUNK_WIDTH * CHUNK_WIDTH];
 
